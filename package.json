@@ -1,0 +1,22 @@
+{
+  "name": "ugate",
+  "version": "1.0.0",
+  "description": "A gateway/financial instituition connected to the Ripple(Real Time Global Settlement Network) ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "June Lara, Steve Chronister, Ryan Ngoh, Michael Edwards",
+  "license": "ISC",
+  "dependencies": {
+    "authy": "^1.2.0",
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.4.7",
+    "jsonwebtoken": "^7.2.1",
+    "nodemailer": "^2.7.0",
+    "plaid": "^1.2.0",
+    "ripple-lib": "^0.17.4",
+    "stripe": "^4.14.0"
+  }
+}
