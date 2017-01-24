@@ -40,13 +40,20 @@ var UserSchema = new Schema({
   	required: true,
   	unique: true
   },
+  //default current date, maybe use date as string and use momentjs?
+  accountcreation: {
+    type: Date,
+    default: Date.now
+  }
   history: {
   	currentbalance: [Number],
   	deposits: [Number],
   	withdraws: [Number],
   	senttoripple: [Number],
   	depositsfromripple: [Number],
-  	usid: {usid}
+  	usid: {usid},
+    //date maybe a string and use momentjs? 
+    lastmodified: [Date]
   },
   usid: {
   	front: {
