@@ -1,7 +1,7 @@
 {
   "name": "ugate",
   "version": "1.0.0",
-  "description": "A gateway/financial instituition connected to the Ripple(Real Time Global Settlement Network) ",
+  "description": "A gateway/financial institution connected to the Ripple(Real Time Global Settlement Network) ",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
