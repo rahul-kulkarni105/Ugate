@@ -6,7 +6,7 @@ import Main from '../components/Main'
 module.exports = (
     <Router history={browserHistory}>
         <Route path="/" component={Main}>
-
+        	
         </Route>
     </Router>
 );

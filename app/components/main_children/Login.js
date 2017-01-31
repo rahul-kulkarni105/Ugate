@@ -1,32 +1,32 @@
 // Include React
 import React from "react";
-var React = require("react");
-var helpers = require("./utils/helpers.js");
+import helpers from "./../utils/helpers.js";
 //Login component
-var Login = React.createClass({
-  getInitialState: function(){
-    return {
+export default class Login extends React.Component{
+  constructor(props){
+    super(props),
+    this.state = {
       username: "",
       password: "",
       logindetails: ""
-    };
-  },
-  setLogin: function(login){
+    }
+  }
+  setLogin(login){
     this.setState({logindetails: login});
-  },
-  handleSubmit: function(event){
+  }
+  handleSubmit(event){
     event.preventDefault();
     this.setLogin({username: this.state.username, password: this.state.password});
-  },
-  handleChange: function(event){
+  }
+  handleChange(event){
     var newState = {};
     newState[event.target.id] = event.target.value;
     this.setState(newState);
-  },
+  }
   // Here we render the component
   //Link navbar-brand href to homepage
   //Link forgot password to page
-  render: function() {
+  render() {
     return (
         <div className="jumbotron">
           <h1 className="text-center">Welcome to uGate!</h1>
@@ -47,7 +47,4 @@ var Login = React.createClass({
         </div>
     );
   }
-});
-
-// Export the component back for use in other files
-module.exports = Login;
+}

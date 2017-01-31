@@ -1,6 +1,7 @@
 // Include React
-import React from "react"
+import React from "react";
 // import helpers from "./utils/helpers.js"
+import Login from "./main_children/Login";
 
 //Main component
 export default class Main extends React.Component{
@@ -19,6 +20,7 @@ export default class Main extends React.Component{
           </div>
         </nav>
         <div className="container">
+          <Login />
           {this.props.children}
         </div>
       </div>
