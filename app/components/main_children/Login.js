@@ -1,4 +1,5 @@
 // Include React
+import React from "react";
 var React = require("react");
 var helpers = require("./utils/helpers.js");
 //Login component

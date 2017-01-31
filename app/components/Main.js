@@ -8,16 +8,14 @@ export default class Main extends React.Component{
   render() {
     return (
       <div className="main-container">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">
-                <img alt="uGate Icon" src="./..../public/images/ugatelogo.png"/>
-                uGate &reg;
-              </a>
-              <p className="navbar-text navbar-right">New to uGate?</p>
-              <button type="button" className="btn btn-default navbar-btn navbar-right">Sign In</button>
-            </div>
+        <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div className="navbar-header">
+            <a className="nav navbar-nav navbar-brand navbar-left" href="#">
+              <img alt="uGate Icon" src="./images/ugatelogo.png"/>
+              uGate &reg;
+            </a>
+            <p className="nav navbar-nav navbar-text navbar-right">New to uGate?  
+            <button type="button" className="btn btn-default navbar-btn">Sign In</button></p>
           </div>
         </nav>
         <div className="container">
