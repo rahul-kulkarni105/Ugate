@@ -10,9 +10,21 @@ import Withdraw from './grandchildren/Withdraw'
 
 export default class SideNav extends React.Component{
   render(){
+    const style = {
+
+    }
     return(
       <div className="row">
-
+        <div className="row">
+          {/* logo goes here */}
+          <AddPaymentMethod />
+          <Deposit />
+          <History />
+          <LogOut />
+          <SendToRipple />
+          <Upload />
+          <Withdraw />
+        </div>
       </div>
 
     );
