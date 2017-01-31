@@ -40,7 +40,7 @@ var Login = React.createClass({
               <input type="password" className="form-control" id="inputPassword" value={this.state.password} onChange={this.handleChange} required placeholder="Password"/>
               <p><a href="#">Forgot password?</a></p>
             </div>
-            
+
             <button type="submit" className="btn btn-default">Submit</button>
           </form>
         </div>

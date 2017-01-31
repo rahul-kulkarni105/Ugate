@@ -44,15 +44,14 @@ var UserSchema = new Schema({
   accountcreation: {
     type: Date,
     default: Date.now
-  }
+  },
   history: {
   	currentbalance: [Number],
   	deposits: [Number],
   	withdraws: [Number],
   	senttoripple: [Number],
   	depositsfromripple: [Number],
-  	usid: {usid},
-    //date maybe a string and use momentjs? 
+    //date maybe a string and use momentjs?
     lastmodified: [Date]
   },
   usid: {

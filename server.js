@@ -8,12 +8,14 @@ var Safe = require("./models/Safe.js");
 // Initialize Express
 var app = express();
 
+var PORT = process.env.PORT || 3030;
+
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
 
 // Make public a static dir
-app.use(express.static("public"));
+app.use(express.static("./public"));
 
 // Database configuration with mongoose -- local for now
 mongoose.connect("mongodb://localhost/ugate");
@@ -36,11 +38,12 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-//TODO routes for any api calls - creating user, validating user
+//routes for any api calls - creating user, validating user
 
 
 
 // Listen on port 3000
-app.listen(process.env.PORT|| 3000, function() {
-  console.log("App running on port 3000!");
+app.listen(PORT, function() {
+
+  console.log("App running on port: " + PORT);
 });

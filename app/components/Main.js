@@ -1,11 +1,11 @@
 // Include React
-var React = require("react");
-var helpers = require("./utils/helpers.js");
+import React from "react"
+// import helpers from "./utils/helpers.js"
 
 //Main component
-var Main = React.createClass({
+export default class Main extends React.Component{
   // Here we render the component
-  render: function() {
+  render() {
     return (
       <div className="main-container">
         <nav className="navbar navbar-default navbar-fixed-top">
@@ -26,7 +26,4 @@ var Main = React.createClass({
       </div>
     );
   }
-});
-
-// Export the component back for use in other files
-module.exports = Main;
+}
