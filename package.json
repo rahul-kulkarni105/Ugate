@@ -20,6 +20,7 @@
     "nodemailer": "^2.7.0",
     "plaid": "^1.2.0",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "ripple-lib": "^0.17.4",

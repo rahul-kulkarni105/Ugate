@@ -1,4 +1,3 @@
-// Include React
 import React from "react";
 import helpers from "./../utils/helpers.js";
 
@@ -11,6 +10,9 @@ export default class Login extends React.Component{
       password: "",
       logindetails: ""
     }
+    this.setLogin = this.setLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   setLogin(login){
     this.setState({logindetails: login});
@@ -35,12 +37,12 @@ export default class Login extends React.Component{
         <br />
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inputUsername">Username:</label>
-            <input type="text" className="form-control" id="inputUsername" value={this.state.username} onChange={this.handleChange} required placeholder="Username"/>
+            <label className="sr-only" htmlFor="username">Username:</label>
+            <input type="text" className="form-control" id="username" value={this.state.username} onChange={this.handleChange} required placeholder="Username"/>
           </div>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inputPassword">Password:</label>
-            <input type="password" className="form-control" id="inputPassword" value={this.state.password} onChange={this.handleChange} required placeholder="Password"/>
+            <label className="sr-only" htmlFor="password">Password:</label>
+            <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChange} required placeholder="Password"/>
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
           <a href="#">Forgot password?</a>
