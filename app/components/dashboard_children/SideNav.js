@@ -1,9 +1,32 @@
 import React from 'react'
-import {render} from 'react-dom'
-import {browserHistory, Router, Route, Link, IndexRoute} from 'react-router'
+import AddPaymentMethod from './grandchildren/AddPaymentMethod'
+import Deposit from './grandchildren/'
+import History from './grandchildren/History'
+import LogOut from './grandchildren/LogOut'
+import SendToRipple from './grandchildren/SendToRipple'
+import Upload from './grandchildren/Upload'
+import Withdraw from './grandchildren/Withdraw'
 
-module.exports = (
-    <Router history={browserHistory}>
-        <Route path="/" component={Main.js}></Route>
-    </Router>
-);
+
+export default class SideNav extends React.Component{
+  render(){
+    const style = {
+
+    }
+    return(
+      <div className="row">
+        <div className="row">
+          {/* logo goes here */}
+          <AddPaymentMethod />
+          <Deposit />
+          <History />
+          <LogOut />
+          <SendToRipple />
+          <Upload />
+          <Withdraw />
+        </div>
+      </div>
+
+    );
+  }
+}
