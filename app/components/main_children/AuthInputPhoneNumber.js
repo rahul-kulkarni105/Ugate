@@ -1,6 +1,6 @@
 // Include React
 var React = require("react");
-var helpers = require("./utils/helpers.js");
+var helpers = require("./../utils/helpers.js");
 //AuthInputPhoneNumber component
 var AuthInputPhoneNumber = React.createClass({
   getInitialState: function(){
@@ -30,7 +30,7 @@ var AuthInputPhoneNumber = React.createClass({
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label className="sr-only" htmlFor="inputPhone">Input Phone Number:</label>
-              <input type="text" className="form-control" id="inputPhone" value={this.state.phonenumber} onChange={this.handleChange} required placeholder="xxx xxx xxxx"/>
+              <input type="tel" className="form-control" id="inputPhone" value={this.state.phonenumber} onChange={this.handleChange} required placeholder="xxx xxx xxxx"/>
             </div>
             <button type="submit" className="btn btn-default">Submit</button>
           </form>
