@@ -19,6 +19,7 @@
     "jsonwebtoken": "^7.2.1",
     "mongoose": "^4.8.0",
     "nodemailer": "^2.7.0",
+    "nodemailer-mailgun-transport": "^1.2.4",
     "plaid": "^1.2.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
