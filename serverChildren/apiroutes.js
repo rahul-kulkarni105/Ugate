@@ -18,6 +18,17 @@ var auth = {
  
 var transport = nodemailer.createTransport(mg(auth));
 
+//Function to generate random URL verification string
+function makeRandomString() {
+    var string = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 10; i++ )
+        string += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return string;
+}
+
 //TRYING TO SETUP EMAIL VERIFICATION WITHOUT nev
 //Email verification config
 // nev.configure({
@@ -72,12 +83,28 @@ module.exports = function(app) {
 
     //create user and trigger email verification
     app.post("/api/users/new", function(req,res){
-        var newUser = new User({username:req.body.username, password:req.body.password, email:req.body.email, phonenumber:req.body.phonenumber, ripplepublicaddress:req.body.ripplepublicaddress, verified:false});
+        var verificationString = makeRandomString();
+        console.log("verification string: " + randomString);
+        //Change this URL in production
+        var verificationUrl = "http://localhost:3030/api/users/verify/" + verificationString;
+        //Add password hashing here
+        var newUser = new User({username:req.body.username, password:req.body.password, email:req.body.email, phonenumber:req.body.phonenumber, ripplepublicaddress:req.body.ripplepublicaddress, verificationString:verificationString, verified:false});
 
         newUser.save(function(err,doc){
             if (err) throw err;
             //email verification steps here?
 
+            //Without adding a custom domain on mailgun, can only send emails to authorized recipients
+            //Once custom domain is added, change the 'to:' to users email (req.body.email)
+            transport.sendMail({
+                from: "ugatedonotreply@gmail.com",
+                to: "ugatedonotreply@gmail.com",
+                subject: "Verification required for Ugate",
+                text: "Please click the following link to verify your account. \n" + verificationUrl
+            }, function(err, info) {
+                if (err) throw err;
+                console.log(info);
+            });
 
             res.send({doc});
         });
@@ -122,6 +149,13 @@ module.exports = function(app) {
     app.put("/api/users/verify/:url", function(req,res){
         var url = req.params.url;
         console.log(url);
+
+        //Find record where url = verificationString. Update verified to true, and set verification string to null
+        User.findOneAndUpdate({verificationString: url}, {$set: {verified: true, verificationString: null}}, function(err, doc) {
+            if (err) throw err;
+            res.send(doc);
+        });
+
 
         //TRYING TO SETUP EMAIL VERIFICATION WITHOUT nev
         // nev.confirmTempUser(url, function(err, user) {
