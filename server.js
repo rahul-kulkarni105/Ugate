@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var User = require("./models/User.js");
 var Safe = require("./models/Safe.js");
+//get the routes and data from other files
+var apiRoutes = require("./serverChildren/apiroutes.js")(app);
 
 // Initialize Express
 var app = express();
