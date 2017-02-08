@@ -3,6 +3,7 @@ import helpers from "./../utils/helpers.js";
 import { Button,Modal} from 'react-bootstrap';
 //Signup component
 export default class SignUp extends React.Component{
+  //Constructor function to set initial states
   constructor(props){
     super(props),
     this.state = {

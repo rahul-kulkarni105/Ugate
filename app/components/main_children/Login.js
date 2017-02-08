@@ -1,6 +1,6 @@
 import React from "react";
 import helpers from "./../utils/helpers.js";
-
+import {Grid,Row,Col,Jumbotron,Form,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap';
 //Login component
 export default class Login extends React.Component{
   constructor(props){
@@ -32,21 +32,30 @@ export default class Login extends React.Component{
   render() {
     return (
       <div className="loginContainer">
-        <h1 className="text-center">Welcome to uGate!</h1>
-        <h2 className="text-center">Connecting you across the globe</h2>
-        <br />
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label className="sr-only" htmlFor="username">Username:</label>
-            <input type="text" className="form-control" id="username" value={this.state.username} onChange={this.handleChange} required placeholder="Username"/>
-          </div>
-          <div className="form-group">
-            <label className="sr-only" htmlFor="password">Password:</label>
-            <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChange} required placeholder="Password"/>
-          </div>
-          <button type="submit" className="btn btn-default">Submit</button>
-          <a href="#">Forgot password?</a>
-        </form>
+        <Jumbotron>
+          <h1>Welcome to uGate!</h1>
+          <h2>Connecting you across the globe</h2>
+          <br />
+          <Form inline onSubmit={this.handleSubmit}>
+            <FormGroup controlId="formInlineUser">
+              <ControlLabel>Username</ControlLabel>
+              {' '}
+              <FormControl type="text" onChange={this.handleChange} required placeholder="Username" />
+            </FormGroup>
+            {' '}
+            <FormGroup controlId="formInlinePassword">
+              <ControlLabel>Password</ControlLabel>
+              {' '}
+              <FormControl type="password" onChange={this.handleChange} required placeholder="Password" />
+            </FormGroup>
+            {' '}
+            <Button type="submit">
+              Log in
+            </Button>
+            {' '}
+            <Button bsStyle="link">Forgot Password?</Button>
+          </Form>
+        </Jumbotron>
       </div>
     );
   }
