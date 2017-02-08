@@ -34,6 +34,13 @@ var UserSchema = new Schema({
   	},
   	"Please enter a valid phone number"]
   },
+  verificationString: {
+    type: String
+  },
+  verified: {
+    type: Boolean,
+    required: true
+  },
   //account id
   ripplepublicaddress: {
   	type: String,
