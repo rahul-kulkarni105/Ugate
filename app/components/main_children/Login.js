@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import helpers from "./../utils/helpers.js";
 import {Grid,Row,Col,Jumbotron,Form,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap';
 //Login component
@@ -12,20 +13,28 @@ export default class Login extends React.Component{
     }
     this.setLogin = this.setLogin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
+    this.handlePassChange = this.handlePassChange.bind(this);
   }
   setLogin(login){
     this.setState({logindetails: login});
+    console.log(this.state.logindetails);
   }
   handleSubmit(event){
     event.preventDefault();
-    this.setLogin({username: this.refs.username.getDOMNode().value, password: this.refs.password.getDOMNode().value});
-    //this.setLogin({username: this.state.username, password: this.state.password});
+    //console.log(ReactDOM.findDOMNode(this.username).value);
+    //this.setLogin({username: ReactDOM.findDOMNode(this.username).value, password: ReactDOM.findDOMNode(this.password).value});
+    this.setLogin({username: this.state.username, password: this.state.password});
   }
-  handleChange(event){
-    var newState = {};
-    newState[event.target.id] = event.target.value;
-    this.setState(newState);
+  handleUserChange(event){
+    this.setState({
+      username: event.target.value
+    });
+  }
+  handlePassChange(event){
+    this.setState({
+      password: event.target.value
+    });
   }
   // Here we render the component
   //Link navbar-brand href to homepage
@@ -41,13 +50,13 @@ export default class Login extends React.Component{
             <FormGroup controlId="formInlineUser">
               <ControlLabel>Username</ControlLabel>
               {' '}
-              <FormControl type="text" onChange={this.handleChange} required placeholder="Username" ref="username"/>
+              <FormControl type="text" onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" /*ref={username => {this.username = username}}*//>
             </FormGroup>
             {' '}
             <FormGroup controlId="formInlinePassword">
               <ControlLabel>Password</ControlLabel>
               {' '}
-              <FormControl type="password" onChange={this.handleChange} required placeholder="Password" ref="password"/>
+              <FormControl type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" /*ref={password => {this.password = password}}*//>
             </FormGroup>
             {' '}
             <Button type="submit">
