@@ -19,7 +19,8 @@ export default class Login extends React.Component{
   }
   handleSubmit(event){
     event.preventDefault();
-    this.setLogin({username: this.state.username, password: this.state.password});
+    this.setLogin({username: this.refs.username.getDOMNode().value, password: this.refs.password.getDOMNode().value});
+    //this.setLogin({username: this.state.username, password: this.state.password});
   }
   handleChange(event){
     var newState = {};
@@ -40,13 +41,13 @@ export default class Login extends React.Component{
             <FormGroup controlId="formInlineUser">
               <ControlLabel>Username</ControlLabel>
               {' '}
-              <FormControl type="text" onChange={this.handleChange} required placeholder="Username" />
+              <FormControl type="text" onChange={this.handleChange} required placeholder="Username" ref="username"/>
             </FormGroup>
             {' '}
             <FormGroup controlId="formInlinePassword">
               <ControlLabel>Password</ControlLabel>
               {' '}
-              <FormControl type="password" onChange={this.handleChange} required placeholder="Password" />
+              <FormControl type="password" onChange={this.handleChange} required placeholder="Password" ref="password"/>
             </FormGroup>
             {' '}
             <Button type="submit">
