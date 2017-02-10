@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 // Create a UserSchema with the Schema class
-var UserSchema = new Schema({
+var TempUserSchema = new Schema({
   username: {
   	type: String,
   	required: true,
@@ -34,42 +34,10 @@ var UserSchema = new Schema({
   	},
   	"Please enter a valid phone number"]
   },
-  verificationString: {
-    type: String
-  },
-  verified: {
-    type: Boolean,
-    required: true
-  },
-  //account id
   ripplepublicaddress: {
   	type: String,
   	required: true,
   	unique: true
-  },
-  //default current date, maybe use date as string and use momentjs?
-  accountcreation: {
-    type: Date,
-    default: Date.now
-  },
-  history: {
-  	currentbalance: [Number],
-  	deposits: [Number],
-  	withdraws: [Number],
-  	senttoripple: [Number],
-  	depositsfromripple: [Number],
-    //date maybe a string and use momentjs?
-    lastmodified: [Date]
-  },
-  usid: {
-  	front: {
-  		type: String,
-  		required: true
-  	},
-  	back: {
-  		type: String,
-  		required: true
-  	}
   },
   lock: {
   	type: Boolean,
@@ -78,7 +46,7 @@ var UserSchema = new Schema({
 });
 
 // Create the User model with the UserSchema
-var User = mongoose.model("User", UserSchema);
+var TempUser = mongoose.model("TempUser", TempUserSchema);
 
 // Export the user model
-module.exports = User;
+module.exports = TempUser;
