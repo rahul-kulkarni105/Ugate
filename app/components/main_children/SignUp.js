@@ -26,6 +26,17 @@ export default class SignUp extends React.Component{
     this.openModal = this.openModal.bind(this);
     this.setSignup = this.setSignup.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFirstChange = this.handleFirstChange.bind(this);
+    this.handleLastChange = this.handleLastChange.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleStateChange = this.handleStateChange.bind(this);
+    this.handleZipChange = this.handleZipChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleConfEmailChange = this.handleConfEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
   }
   closeModal(){
     this.setState({showModal: false});
@@ -78,7 +89,7 @@ export default class SignUp extends React.Component{
   }
   handleEmailChange(event){
     this.setState({
-      email: event.target.value
+      emailAddress: event.target.value
     });
   }
   handleConfEmailChange(event){
@@ -140,13 +151,13 @@ export default class SignUp extends React.Component{
             <FormGroup controlId="formUsername">
               <Col componentClass={ControlLabel} sm={2}>Username: </Col>
               <Col sm={10}>
-                <FormControl type="text" onChange={this.handleUserChange} value={this.state.username} required/>
+                <FormControl type="text" onChange={this.handleUsernameChange} value={this.state.userName} required/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formEmail">
               <Col componentClass={ControlLabel} sm={2}>Email Address: </Col>
               <Col sm={10}>
-                <FormControl type="email" onChange={this.handleEmailChange} value={this.state.email} required/>
+                <FormControl type="email" onChange={this.handleEmailChange} value={this.state.emailAddress} required/>
               </Col>
             </FormGroup>
             <FormGroup controlId="formConfEmail">
