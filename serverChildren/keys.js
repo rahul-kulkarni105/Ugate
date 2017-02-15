@@ -6,3 +6,5 @@ Live_Secret_Key: sk_live_gun9YqDbx9flAIVAz6CYF6X4,
 Live_Publishable_Key: pk_live_yW9zNWDAKNQBQz9mFC2pbJLa
 
 }
+
+module.exports = Stripe;

@@ -3,46 +3,21 @@ import React from 'react'
 export default class Cc extends React.Component {
     render() {
         return (
-            <div>
-                <form action="/your-charge-code" method="POST" id="payment-form">
-                    <span class="payment-errors"></span>
+          <form action="/charge" method="post" id="payment-form">
+<div className="form-row">
+ <label>
+    <span>Card</span>
+    <div id="card-element">
+      <!-- a Stripe Element will be inserted here. -->
+    </div>
+  </label>
+</div>
 
-                    <div class="form-row">
-                        <label>
-                            <span>Card Number</span>
-                            <input type="text" size="20" data-stripe="number"/>
-                        </label>
-                    </div>
+<!-- Used to display form errors -->
+<div id="payment-errors"></div>
 
-                    <div class="form-row">
-                        <label>
-                            <span>Expiration (MM/YY)</span>
-                            <input type="text" size="2" data-stripe="exp_month"/>
-                        </label>
-                        <span>
-                            /
-                        </span>
-                        <input type="text" size="2" data-stripe="exp_year"/>
-                    </div>
-
-                    <div class="form-row">
-                        <label>
-                            <span>CVC</span>
-                            <input type="text" size="4" data-stripe="cvc"/>
-                        </label>
-                    </div>
-
-                    <div class="form-row">
-                        <label>
-                            <span>Billing ZIP Code</span>
-                            <input type="text" size="6" data-stripe="address_zip"/>
-                        </label>
-                    </div>
-
-                    <input type="submit" class="submit" value="Submit Payment"/>
-                </form>
-            </div>
-
+<input type="submit" className="submit" value="Submit Payment" />
+</form>
         );
     }
 }
