@@ -3,9 +3,8 @@ import React from "react";
 // import helpers from "./utils/helpers.js"
 import Login from "./main_children/Login";
 import MainNav from "./main_children/MainNav";
-import SignUp from "./main_children/SignUp";
 import {Grid,Row,Col} from "react-bootstrap";
-
+import SignUp from './main_children/SignUp';
 //Main component
 export default class Main extends React.Component{
   // Here we render the component
@@ -23,10 +22,9 @@ export default class Main extends React.Component{
               {this.props.children}
               <Login />
             </Col>
+            
           </Row>
-          <Row>
-            <SignUp />
-          </Row>
+          <SignUp />
         </Grid>
       </div>
     );

@@ -3,6 +3,15 @@ import ReactDOM from "react-dom";
 import helpers from "./../utils/helpers.js";
 import {Grid,Row,Col,Jumbotron,Form,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap';
 //Login component
+const styles = {
+  jumboStyle : {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    textAlign: 'center'
+  }
+}
 export default class Login extends React.Component{
   constructor(props){
     super(props),
@@ -42,7 +51,7 @@ export default class Login extends React.Component{
   render() {
     return (
       <div className="loginContainer">
-        <Jumbotron>
+        <Jumbotron style={styles.jumboStyle}>
           <h1>Welcome to uGate!</h1>
           <h2>Connecting you across the globe</h2>
           <br />

@@ -1,6 +1,6 @@
 import React from "react";
 import helpers from "./../utils/helpers.js";
-
+import {Jumbotron, Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 //AuthInputPhoneNumber component
 export default class AuthInputPhoneNumber extends React.Component{
   constructor(props){
@@ -18,22 +18,29 @@ export default class AuthInputPhoneNumber extends React.Component{
     this.setLogin({phonenumber: this.state.phonenumber});
   }
   handleChange(event){
-    var newState = {};
-    newState[event.target.id] = event.target.value;
-    this.setState(newState);
+    this.setState({
+      phonenumber: event.target.value
+    });
   }
   render(){
     return (
-      <div className="jumbotron">
-        <h1 className="text-center">Welcome to uGate!</h1>
-        <h2 className="text-center">Connecting you across the globe</h2>
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label className="sr-only" htmlFor="inputPhone">Input Phone Number:</label>
-            <input type="tel" className="form-control" id="inputPhone" value={this.state.phonenumber} onChange={this.handleChange} required placeholder="xxx xxx xxxx"/>
-          </div>
-          <button type="submit" className="btn btn-default">Submit</button>
-        </form>
+      <div className="authPhoneNumberContainer">
+        <Jumbotron>
+          <h1>Authorize Phone Number</h1>
+          <h2>Input your phone number</h2>
+          <br />
+          <Form inline onSubmit={this.handleSubmit}>
+            <FormGroup controlId="formAuthPhone">
+              <ControlLabel>Phone Number: </ControlLabel>
+              {' '}
+              <FormControl type="tel" onChange={this.handleChange} value={this.state.phonenumber} required placeholder="1234567890"/>
+            </FormGroup>
+            {' '}
+            <Button type="submit">
+            Submit
+            </Button>
+          </Form>
+        </Jumbotron>
       </div>
     );
   }
