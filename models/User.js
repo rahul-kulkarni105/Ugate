@@ -63,10 +63,12 @@ var UserSchema = new Schema({
   },
   usid: {
   	front: {
+      data: Buffer,
   		type: String,
   		required: true
   	},
   	back: {
+      data: Buffer,
   		type: String,
   		required: true
   	}
