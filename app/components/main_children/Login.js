@@ -9,7 +9,8 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: "10%"
   }
 }
 export default class Login extends React.Component{
