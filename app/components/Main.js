@@ -3,7 +3,7 @@ import React from "react";
 // import helpers from "./utils/helpers.js"
 
 import MainNav from "./main_children/MainNav";
-import {Grid, Row, Col} from "react-bootstrap";
+
 import {Link} from 'react-router'
 //Main component
 export default class Main extends React.Component {
@@ -11,22 +11,15 @@ export default class Main extends React.Component {
     render() {
         return (
             <div>
-                <Grid>
-                    <Row>
-                        <Col sm={12}>
-                            <MainNav/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={12}>
+                <div className="row">
+                    <MainNav/>
+                </div>
+                <div className="container">
+                    <div className="row">
+                        {this.props.children}
+                    </div>
+                </div>
 
-                            {this.props.children}
-
-                        </Col>
-
-                    </Row>
-
-                </Grid>
             </div>
         );
     }

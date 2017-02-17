@@ -14,11 +14,11 @@ export default class MainNav extends React.Component {
             <nav className="navbar navbar-default navbar-fixed-top">
                 <div className="container">
                     <div className="navbar-header">
-                        <a className="navbar-brand">
+                        <div className="navbar-brand">
                             <img alt="uGate Icon" src="./images/ugatelogo.png"/>
                             <Link to="/">
                                 uGate &reg;</Link>
-                        </a>
+                        </div>
                     </div>
 
                     <ul className="nav navbar-nav navbar-right">
