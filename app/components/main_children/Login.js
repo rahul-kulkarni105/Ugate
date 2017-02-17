@@ -58,13 +58,13 @@ export default class Login extends React.Component{
             <div className="form-group">
               <label for="username">email or username</label>
               {' '}
-              <input type="email"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" /*ref={username => {this.username = username}}*//>
+              <input type="email"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" />
 
             {' '}
             <div className="form-group">
               <label for="password">Password </label>
               {' '}
-              <input type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" /*ref={password => {this.password = password}}*//>
+              <input type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" />
             </div>
             {' '}
             <button className="btn btn-default" type="submit">
