@@ -4,7 +4,9 @@ export const helpers = {
 
   getHistory(){
     return axios.get("/history");
-  }
+  },
+  createUser(userObject){
 
+  }
 
 }

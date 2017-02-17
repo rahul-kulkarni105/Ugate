@@ -17,11 +17,10 @@ export default class SignUp extends React.Component{
       confirmEmailAddress: "",
       password: "",
       confirmPassword: "",
-      signupdetails: "",
-      showModal: false
+      signupdetails: ""
+
     }
-    this.closeModal = this.closeModal.bind(this);
-    this.openModal = this.openModal.bind(this);
+
     this.setSignup = this.setSignup.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFirstChange = this.handleFirstChange.bind(this);
@@ -36,17 +35,12 @@ export default class SignUp extends React.Component{
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
   }
-  closeModal(){
-    this.setState({showModal: false});
-  }
-  openModal(){
-    this.setState({showModal: true});
-  }
   setSignup(signup){
     this.setState({signupdetails: signup});
     console.log(this.state.signupdetails);
   }
   handleSubmit(event){
+    alert("Welcome to UGate. We sent you an email to verify your account.")
     event.preventDefault();
     this.setSignup({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, userName: this.state.userName, email: this.state.emailAddress, confirmEmailAddress: this.state.confirmEmailAddress, password: this.state.password, confirmPassword: this.state.confirmPassword});
   }
@@ -185,7 +179,7 @@ export default class SignUp extends React.Component{
 
 
 
-                <button className="btn btn-default" type="submit" onSubmit={this.handleSubmit}>Submit</button>
+            <button className="btn btn-default" type="submit" onSubmit={this.handleSubmit}>Submit</button>
 
           </form>
 
@@ -201,7 +195,7 @@ export default class SignUp extends React.Component{
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary">Save changes</button>
+                  
                 </div>
               </div>
             </div>
