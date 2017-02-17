@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import helpers from "./../utils/helpers.js";
-import {Grid,Row,Col,Jumbotron,Form,FormGroup,ControlLabel,FormControl,Button} from 'react-bootstrap';
+
 //Login component
 const styles = {
   jumboStyle : {
@@ -50,31 +50,31 @@ export default class Login extends React.Component{
   //Link forgot password to page
   render() {
     return (
-      <div className="loginContainer">
-        <Jumbotron style={styles.jumboStyle}>
+      <div className="jumbotron" style={styles.jumboStyle} >
           <h1>Welcome to uGate!</h1>
           <h2>Connecting you across the globe</h2>
           <br />
-          <Form inline onSubmit={this.handleSubmit}>
-            <FormGroup controlId="formInlineUser">
-              <ControlLabel>Username</ControlLabel>
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label for="username">email or username</label>
               {' '}
-              <FormControl type="text" onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" /*ref={username => {this.username = username}}*//>
-            </FormGroup>
+              <input type="email"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" /*ref={username => {this.username = username}}*//>
+
             {' '}
-            <FormGroup controlId="formInlinePassword">
-              <ControlLabel>Password</ControlLabel>
+            <div className="form-group">
+              <label for="password">Password </label>
               {' '}
-              <FormControl type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" /*ref={password => {this.password = password}}*//>
-            </FormGroup>
+              <input type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" /*ref={password => {this.password = password}}*//>
+            </div>
             {' '}
-            <Button type="submit">
+            <button className="btn btn-default" type="submit">
               Log in
-            </Button>
+            </button>
             {' '}
-            <Button bsStyle="link">Forgot Password?</Button>
-          </Form>
-        </Jumbotron>
+            <a>Forgot Password?</a>
+          </div>
+          </form>
+
       </div>
     );
   }

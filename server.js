@@ -2,6 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var jwt = require ("jsonwebtoken");
 var User = require("./models/User.js");
 var Safe = require("./models/Safe.js");
 
