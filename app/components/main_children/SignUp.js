@@ -23,7 +23,8 @@ export default class SignUp extends React.Component{
 
     this.setSignup = this.setSignup.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFirstChange = this.handleFirstChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    /*this.handleFirstChange = this.handleFirstChange.bind(this);
     this.handleLastChange = this.handleLastChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
@@ -33,7 +34,7 @@ export default class SignUp extends React.Component{
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleConfEmailChange = this.handleConfEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);*/
   }
   setSignup(signup){
     this.setState({signupdetails: signup});
@@ -44,6 +45,11 @@ export default class SignUp extends React.Component{
     event.preventDefault();
     this.setSignup({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, userName: this.state.userName, email: this.state.emailAddress, confirmEmailAddress: this.state.confirmEmailAddress, password: this.state.password, confirmPassword: this.state.confirmPassword});
   }
+  handleChange(event){
+    var newState = {};
+    newState[event.target.id] = event.target.value;
+    this.setState(newState);
+  }/*
   handleFirstChange(event){
     this.setState({
       firstName: event.target.value
@@ -98,88 +104,130 @@ export default class SignUp extends React.Component{
     this.setState({
       confirmPassword: event.target.value
     });
-  }
+  }*/
   render() {
     return (
 
         <div className="panel panel-default padd">
+        <div className="panel-heading"> Sign Up</div>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group" >
-              <label htmlFor="formFirstName">
-            First Name: </label>
-              <input type="text" onChange={this.handleFirstChange} value={this.state.firstName} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formFirstName">
+              First Name: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formLastName">
-            Last Name: </label>
-              <input type="text" onChange={this.handleLastChange} value={this.state.lastName} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formLastName">
+              Last Name: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="lastName" value={this.state.lastName} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formAddress">
-            Address: </label>
-              <input type="text" onChange={this.handleAddressChange} value={this.state.address} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formAddress">
+              Address: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="address" value={this.state.address} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formCity">
-            City: </label>
-              <input type="text" onChange={this.handleCityChange} value={this.state.city} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formCity">
+              City: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="city" value={this.state.city} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formState">
-            State: </label>
-              <input type="text" onChange={this.handleStateChange} value={this.state.state} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formState">
+              State: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="state" value={this.state.state} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formZip">
-            Zip Code: </label>
-              <input type="number" onChange={this.handleZipChange} value={this.state.zip} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formZip">
+              Zip Code: </label>
+                <div className="col-md-9">
+                  <input type="number" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formUsername">
-            Username: </label>
-              <input type="text" onChange={this.handleUsernameChange} value={this.state.userName} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formUsername">
+              Username: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="userName" value={this.state.userName} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formEmail">
-            Email Address: </label>
-              <input type="email" onChange={this.handleEmailChange} value={this.state.emailAddress} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formEmail">
+              Email Address: </label>
+                <div className="col-md-9">
+                  <input type="email" className="form-control" id="emailAddress" value={this.state.emailAddress} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formConfEmail">
-            Confirm Email Address: </label>
-              <input type="email" onChange={this.handleConfEmailChange} value={this.state.confirmEmailAddress} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formConfEmail">
+              Confirm Email Address: </label>
+                <div className="col-md-9">
+                  <input type="email" className="form-control" id="confirmEmailAddress" value={this.state.confirmEmailAddress} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formPassword">
-            Password: </label>
-              <input type="password" onChange={this.handlePasswordChange} value={this.state.password} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formPassword">
+              Password: </label>
+                <div className="col-md-9">
+                  <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
             <div className="form-group" >
-              <label htmlFor="formConfPassword">
-            Confirm Password: </label>
-              <input type="password" onChange={this.handleConfirmPasswordChange} value={this.state.confirmPassword} required/>
-
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="formConfPassword">
+              Confirm Password: </label>
+                <div className="col-md-9">
+                  <input type="password" className="form-control" id="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} required/>
+                </div>
+              </div>
             </div>
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" /> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
+            <div className="form-check">
+            <div className="row">
+            <div className="col-md-2">
+            </div>
+              <div className="col-md-9">
+              <label className="form-check-label">
+                <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
+              <br />
+              <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
+              </div>
+              </div>
             </div>
 
 
 
 
-            <button className="btn btn-default" type="submit" onSubmit={this.handleSubmit}>Submit</button>
+            
 
           </form>
 

@@ -15,8 +15,9 @@ export default class MainNav extends React.Component {
                 <div className="container">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <img alt="uGate Icon" src="./images/ugatelogo.png"/>
                             <Link to="/">
+                            <img alt="uGate Icon" src="./images/ugatelogo.png"/>
+                            
                                 uGate &reg;</Link>
                         </div>
                     </div>
@@ -25,10 +26,11 @@ export default class MainNav extends React.Component {
                         <li>
 
 
-                                <text>New to uGate?</text>
-
+                                <p className="navbar-text">New to uGate?</p>
+                                </li>
+                                <li>
                             <Link to="/SignUp">
-                                <button className="btn btn-info">Sign Up</button>
+                                <span className="glyphicon glyphicon-user"></span> Sign Up
                             </Link>
                         </li>
                     </ul>

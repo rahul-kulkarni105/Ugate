@@ -55,11 +55,11 @@ export default class Login extends React.Component{
           <h1>Welcome to uGate!</h1>
           <h2>Connecting you across the globe</h2>
           <br />
-          <form onSubmit={this.handleSubmit}>
+          <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">email or username</label>
+              <label htmlFor="username">Email or Username</label>
               {' '}
-              <input type="email"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Username" />
+              <input type="text"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Email or Username" />
 
             {' '}
             <div className="form-group">
