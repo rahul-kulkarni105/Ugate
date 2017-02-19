@@ -9,11 +9,11 @@ const DashboardStyle = {
 }
 
     return(
-      <div className="Row">
+      <div className="row">
         <div className="col-xs-4">
             <SideNav />
         </div>
-      <div className="col-xs-8" id="">
+      <div className="col-xs-8">
         {this.props.children}
       </div>
 

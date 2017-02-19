@@ -1,3 +1,47 @@
 .padd{
   padding-top: 10%;
 }
+body {
+	margin: 0;
+	background-image: url(./images/1.jpg);
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 60%;
+}
+.navbarstyle .brand {
+ 	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.navbarstyle .navbar-inner {
+	background: #fff;
+	filter: none !important;
+	box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.navbarstyle .navbar-inner .nav {
+	float: right;
+}
+.navbarstyle .navbar-inner .nav li a {
+	background: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	color: #777;
+	font-size: 13px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-weight: 600;
+}
+.navbarstyle .navbar-inner .nav li a:hover {
+	background: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	color: #bf3604;
+}		
+.navbarstyle .navbar-inner .nav li.active a {
+	color: #bf3604;
+}

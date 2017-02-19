@@ -3,15 +3,14 @@ import React from "react";
 import helpers from "./../utils/helpers.js";
 
 import {Link} from 'react-router';
-const brandStyle = {
-    padding: '0px 15px'
-}
+
 //MainNav component
 export default class MainNav extends React.Component {
     // Here we render the component
     render() {
         return (
-            <nav className="navbar navbar-default navbar-fixed-top">
+            <nav className="navbar navbarstyle navbar-static-top">
+              <div className="navbar-inner">
                 <div className="container">
                     <div className="navbar-header">
                         <div className="navbar-brand">
@@ -36,7 +35,7 @@ export default class MainNav extends React.Component {
                     </ul>
 
                 </div>
-
+                </div>
             </nav>
         );
     }

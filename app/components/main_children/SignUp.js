@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import helpers from "./../utils/helpers.js";
+import {Link} from "react-router";
 export default class SignUp extends React.Component{
   //Constructor function to set initial states
   constructor(props){
@@ -219,7 +220,7 @@ export default class SignUp extends React.Component{
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
               <br />
-              <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
+              <Link to="/AuthInputPhoneNumber"><button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button></Link>
               </div>
               </div>
             </div>
