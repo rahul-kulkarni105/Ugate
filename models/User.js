@@ -63,18 +63,18 @@ var UserSchema = new Schema({
     //date maybe a string and use momentjs?
     lastModified: [Date]
   },
-  // usid: {
-  // 	front: {
-  //     data: Buffer,
-  // 		type: String,
-  // 		required: true
-  // 	},
-  // 	back: {
-  //     data: Buffer,
-  // 		type: String,
-  // 		required: true
-  // 	}
-  // },
+  usid: {
+  	front: {
+      data: Buffer,
+  		type: String,
+  		required: true
+  	},
+  	back: {
+      data: Buffer,
+  		type: String,
+  		required: true
+  	}
+  },
   lock: {
   	type: Boolean,
   	default: false

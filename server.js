@@ -1,5 +1,7 @@
 // Dependencies
 var express = require("express");
+var fs = require('fs');
+var multer = require('multer');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var jwt = require ("jsonwebtoken");

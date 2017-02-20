@@ -2,7 +2,9 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var User = require("./../models/User");
 var mongoose = require('mongoose');
- // var nev = require('email-verification')(mongoose);
+var fs = require('fs');
+var bcrypt = require('bcrypt');
+// var nev = require('email-verification')(mongoose);
 
 //nodemailer setup
 var nodemailer = require('nodemailer');
@@ -10,10 +12,10 @@ var mg = require('nodemailer-mailgun-transport');
 
 // This is your API key that you retrieve from www.mailgun.com/cp (free up to 10K monthly emails)
 var auth = {
-  auth: {
-    api_key: 'key-57c35a300ecaffbc21e11de57009f794',
-    domain: 'sandboxc4d574cd65944dac96f405cdba84828d.mailgun.org'
-  }
+    auth: {
+        api_key: 'key-57c35a300ecaffbc21e11de57009f794',
+        domain: 'sandboxc4d574cd65944dac96f405cdba84828d.mailgun.org'
+    }
 }
 
 var transport = nodemailer.createTransport(mg(auth));
@@ -23,7 +25,7 @@ function makeRandomString() {
     var string = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 10; i++ )
+    for (var i = 0; i < 10; i++)
         string += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return string;
@@ -65,55 +67,73 @@ function makeRandomString() {
 module.exports = function(app) {
 
     //get all users
-    app.get("/api/users", function(req, res){
-        User.find({}, function(err, doc){
-            if (err) throw err;
+    app.get("/api/users", function(req, res) {
+        User.find({}, function(err, doc) {
+            if (err)
+                throw err;
 
             res.json(doc);
         });
     });
 
     //get specific user
-    app.get("/api/users/id/:id", function(req,res){
-        User.findById(req.params.id, function(err,doc){
-            if (err) throw err;
+    app.get("/api/users/id/:id", function(req, res) {
+        User.findById(req.params.id, function(err, doc) {
+            if (err)
+                throw err;
             res.json(doc);
-          });
+        });
     });
 
     //create user and trigger email verification
-    app.post("/api/users/new", function(req,res){
-      console.log(req.body.userName, req.body.password, req.body.email, req.body.phoneNumber);
+    app.post("/api/users/new", function(req, res) {
+        console.log(req.body.userName, req.body.password, req.body.email, req.body.phoneNumber);
         var verificationString = makeRandomString();
         console.log("verification string: " + verificationString);
         //Change this URL in production
         var verificationUrl = "http://localhost:3030/api/users/verify/" + verificationString;
         //Add password hashing here
-        User.create({username:req.body.userName, password:req.body.password, email:req.body.email, phoneNumber:req.body.phoneNumber, ripplePublicAddress:req.body.ripplePublicAddress, verificationString:verificationString, verified: false}, function(err){
-          if (err) {
-            console.log(err);
-          }
-          else {
 
-            transport.sendMail({
-                from: "ugatedonotreply@gmail.com",
-                to: "ugatedonotreply@gmail.com",
-                subject: "Verification required for Ugate",
-                text: "Please click the following link to verify your account. \n" + verificationUrl
-            }, function(err, info) {
-                if (err) throw err;
-                console.log(info);
-            });
-            res.send("Saved User");
-          }
+
+        User.create({
+            username: req.body.userName,
+            password: req.body.password,
+            email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+            ripplePublicAddress: req.body.ripplePublicAddress,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            verificationString: verificationString,
+            verified: false
+        }, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+
+                transport.sendMail({
+                    from: "ugatedonotreply@gmail.com",
+                    to: "ugatedonotreply@gmail.com",
+                    subject: "Verification required for Ugate",
+                    text: "Please click the following link to verify your account. \n" + verificationUrl
+                }, function(err, info) {
+                    if (err)
+                        throw err;
+                    console.log(info);
+                });
+                res.send("Saved User");
+            }
         });
 
         // newUser.save(function(err,doc){
         //     if (err) throw err;
-            //email verification steps here?
+        //email verification steps here?
 
-            //Without adding a custom domain on mailgun, can only send emails to authorized recipients
-            //Once custom domain is added, change the 'to:' to users email (req.body.email)
+        //Without adding a custom domain on mailgun, can only send emails to authorized recipients
+        //Once custom domain is added, change the 'to:' to users email (req.body.email)
         //     transport.sendMail({
         //         from: "ugatedonotreply@gmail.com",
         //         to: "ugatedonotreply@gmail.com",
@@ -164,16 +184,23 @@ module.exports = function(app) {
     });
 
     //user verification update
-    app.put("/api/users/verify/:url", function(req,res){
+    app.put("/api/users/verify/:url", function(req, res) {
         var url = req.params.url;
         console.log(url);
 
         //Find record where url = verificationString. Update verified to true, and set verification string to null
-        User.findOneAndUpdate({verificationString: url}, {$set: {verified: true, verificationString: null}}, function(err, doc) {
-            if (err) throw err;
+        User.findOneAndUpdate({
+            verificationString: url
+        }, {
+            $set: {
+                verified: true,
+                verificationString: null
+            }
+        }, function(err, doc) {
+            if (err)
+                throw err;
             res.send(doc);
         });
-
 
         //TRYING TO SETUP EMAIL VERIFICATION WITHOUT nev
         // nev.confirmTempUser(url, function(err, user) {

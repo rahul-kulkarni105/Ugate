@@ -15,16 +15,20 @@ export default class SignUp extends React.Component{
       state: '',
       zip: '',
       phoneNumber: '',
+      ripplePublicAddress: '',
       userName: '',
       emailAddress: '',
       confirmEmailAddress: '',
       password: '',
       confirmPassword: '',
-      signupdetails: ''
+      signupdetails: '',
+      //Ryan I moved on to the other components see if you can figure out how to store Images in MongoDB. I am tired of reading about it and honesly have been stuck tring to figure it out something about multer idk weird
+      idFront: '',
+      idBack: ''
 
     }
 
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     /*this.handleFirstChange = this.handleFirstChange.bind(this);
@@ -42,13 +46,16 @@ export default class SignUp extends React.Component{
   componentDidUpdate(prevProps, prevState){
     console.log("fuck off")
   }
+
   handleSubmit(event){
+    //alerts user that they have been sent an email to veriffy account
     alert("Welcome to UGate. We sent you an email to verify your account.")
+    //prevents page refresh
     event.preventDefault();
-     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, userName: this.state.userName, email: this.state.emailAddress, password: this.state.password});
+    //call create user function from helpers and send object of user information
+     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress, userName: this.state.userName, email: this.state.emailAddress, password: this.state.password, });
 
 
-     event.preventDefault();
 
 
   }
@@ -183,6 +190,15 @@ export default class SignUp extends React.Component{
             </div>
             <div className="form-group" >
               <div className="row">
+                <label className="col-md-2 control-label" htmlFor="rpa">
+              RipplePublicAddress: </label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="ripplePublicAddress" value={this.state.ripplePublicAddress} onChange={this.handleChange} required/>
+                </div>
+              </div>
+            </div>
+            <div className="form-group" >
+              <div className="row">
                 <label className="col-md-2 control-label" htmlFor="formUsername">
               Username: </label>
                 <div className="col-md-9">
@@ -225,6 +241,13 @@ export default class SignUp extends React.Component{
                   <input type="password" className="form-control" id="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} required/>
                 </div>
               </div>
+              <div className="form-group"><label htmlFor="exampleInputFile">Upload US ID front</label>
+                <input type="file" id="idFront" value={this.state.idFront} onChange={this.handleChange}/>
+                <label htmlFor="exampleInputFile">Upload US ID back</label>
+                <input type="file" id="idBack" value={this.state.idBack} onChange={this.handleChange} />
+              </div>
+
+
             </div>
             <div className="form-check">
             <div className="row">
