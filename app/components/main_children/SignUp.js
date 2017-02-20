@@ -31,17 +31,6 @@ export default class SignUp extends React.Component{
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    /*this.handleFirstChange = this.handleFirstChange.bind(this);
-    this.handleLastChange = this.handleLastChange.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
-    this.handleCityChange = this.handleCityChange.bind(this);
-    this.handleStateChange = this.handleStateChange.bind(this);
-    this.handleZipChange = this.handleZipChange.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleConfEmailChange = this.handleConfEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);*/
   }
   componentDidUpdate(prevProps, prevState){
     console.log("fuck off")
@@ -63,62 +52,7 @@ export default class SignUp extends React.Component{
     var newState = {};
     newState[event.target.id] = event.target.value;
     this.setState(newState);
-  }/*
-  handleFirstChange(event){
-    this.setState({
-      firstName: event.target.value
-    });
   }
-  handleLastChange(event){
-    this.setState({
-      lastName: event.target.value
-    });
-  }
-  handleAddressChange(event){
-    this.setState({
-      address: event.target.value
-    });
-  }
-  handleCityChange(event){
-    this.setState({
-      city: event.target.value
-    });
-  }
-  handleStateChange(event){
-    this.setState({
-      state: event.target.value
-    });
-  }
-  handleZipChange(event){
-    this.setState({
-      zip: event.target.value
-    });
-  }
-  handleUsernameChange(event){
-    this.setState({
-      userName: event.target.value
-    });
-  }
-  handleEmailChange(event){
-    this.setState({
-      emailAddress: event.target.value
-    });
-  }
-  handleConfEmailChange(event){
-    this.setState({
-      confirmEmailAddress: event.target.value
-    });
-  }
-  handlePasswordChange(event){
-    this.setState({
-      password: event.target.value
-    });
-  }
-  handleConfirmPasswordChange(event){
-    this.setState({
-      confirmPassword: event.target.value
-    });
-  }*/
   render() {
     return (
 
@@ -241,13 +175,22 @@ export default class SignUp extends React.Component{
                   <input type="password" className="form-control" id="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} required/>
                 </div>
               </div>
-              <div className="form-group"><label htmlFor="exampleInputFile">Upload US ID front</label>
-                <input type="file" id="idFront" value={this.state.idFront} onChange={this.handleChange}/>
-                <label htmlFor="exampleInputFile">Upload US ID back</label>
-                <input type="file" id="idBack" value={this.state.idBack} onChange={this.handleChange} />
+            </div>
+            <div className="form-group">
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="exampleInputFile">Upload US ID front:</label>
+                <div className="col-md-9">
+                  <input type="file" id="idFront" value={this.state.idFront} onChange={this.handleChange}/>
+                </div>
               </div>
-
-
+            </div>
+            <div className="form-group">
+              <div className="row">
+                <label className="col-md-2 control-label" htmlFor="exampleInputFile">Upload US ID back:</label>
+                <div className="col-md-9">
+                  <input type="file" id="idBack" value={this.state.idBack} onChange={this.handleChange} />
+                </div>
+              </div>
             </div>
             <div className="form-check">
             <div className="row">
@@ -258,7 +201,9 @@ export default class SignUp extends React.Component{
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
               <br />
+              <Link to="/SignUp/AuthInputPhoneNumber">
               <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
+              </Link>
               </div>
               </div>
             </div>
@@ -287,7 +232,7 @@ export default class SignUp extends React.Component{
               </div>
             </div>
           </div>
-
+          {this.props.children}
       </div>
 
     );

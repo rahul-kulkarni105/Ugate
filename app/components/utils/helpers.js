@@ -6,9 +6,6 @@ export function getHistory() {
 }
 
 export function createUser(userInfo) {
-
-
-
     return axios.post("/api/users/new", {
         userName: userInfo.userName,
         password: userInfo.password,

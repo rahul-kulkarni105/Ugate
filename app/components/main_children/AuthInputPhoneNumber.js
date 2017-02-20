@@ -7,7 +7,10 @@ export default class AuthInputPhoneNumber extends React.Component{
     this.state = {
       phoneNumber: "",
       logindetails: "",
-    };
+    }
+    this.setLogin = this.setLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   setLogin(login){
     this.setState({logindetails: login});

@@ -1,6 +1,6 @@
 import React from 'react'
 import AddPaymentMethod from './grandchildren/AddPaymentMethod'
-import Deposit from './grandchildren/'
+import Deposit from './grandchildren/Deposit'
 import History from './grandchildren/History'
 import LogOut from './grandchildren/LogOut'
 import SendToRipple from './grandchildren/SendToRipple'
@@ -10,9 +10,6 @@ import Withdraw from './grandchildren/Withdraw'
 
 export default class SideNav extends React.Component{
   render(){
-    const style = {
-
-    }
     return(
       <div className="row">
         <div className="row">

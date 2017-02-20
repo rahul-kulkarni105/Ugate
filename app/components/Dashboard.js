@@ -2,11 +2,8 @@ import React from 'react'
 import SideNav from './dashboard_children/SideNav'
 
 
-export default class Dashboard extends React.component{
+export default class Dashboard extends React.Component{
   render(){
-const DashboardStyle = {
-
-}
 
     return(
       <div className="row">
