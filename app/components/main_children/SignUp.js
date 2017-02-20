@@ -7,18 +7,18 @@ export default class SignUp extends React.Component{
   constructor(props){
     super(props),
     this.state = {
-      firstName: "",
-      lastName: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: 0,
-      userName: "",
-      emailAddress: "",
-      confirmEmailAddress: "",
-      password: "",
-      confirmPassword: "",
-      signupdetails: ""
+      firstName: undefined,
+      lastName: undefined,
+      address: undefined,
+      city: undefined,
+      state: undefined,
+      zip: undefined,
+      userName: undefined,
+      emailAddress: undefined,
+      confirmEmailAddress: undefined,
+      password: undefined,
+      confirmPassword: undefined,
+      signupdetails: undefined
 
     }
 
@@ -112,6 +112,7 @@ export default class SignUp extends React.Component{
         <div className="panel panel-default padd">
         <div className="panel-heading"> Sign Up</div>
           <form onSubmit={this.handleSubmit}>
+
             <div className="form-group" >
               <div className="row">
                 <label className="col-md-2 control-label" htmlFor="formFirstName">
@@ -163,6 +164,14 @@ export default class SignUp extends React.Component{
               Zip Code: </label>
                 <div className="col-md-9">
                   <input type="number" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="row">
+                <label className="col-md-2" htmlFor="formPhonenumber">Cell phone:</label>
+                <div className="col-md-9">
+                  <input type="text" className="form-control" id="cellPhone" value="(555)555-555" onChange={this.handleChange} required/>
                 </div>
               </div>
             </div>
@@ -220,7 +229,7 @@ export default class SignUp extends React.Component{
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
               <br />
-              <Link to="/AuthInputPhoneNumber"><button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button></Link>
+              <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
               </div>
               </div>
             </div>
@@ -228,7 +237,7 @@ export default class SignUp extends React.Component{
 
 
 
-            
+
 
           </form>
 
@@ -244,7 +253,7 @@ export default class SignUp extends React.Component{
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                  
+
                 </div>
               </div>
             </div>
