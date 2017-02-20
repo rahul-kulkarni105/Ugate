@@ -9,17 +9,7 @@ var Schema = mongoose.Schema;
 
 // Create a UserSchema with the Schema class
 var UserSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
 
-        // validate: [
-        // function(input){
-        // 	return input.length >= 6
-        // },
-        // "Username must be 6 or more characters"]
-    },
     password: {
         type: String,
         required: true
@@ -27,6 +17,7 @@ var UserSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true
         // match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
     },
     phoneNumber: {
@@ -45,7 +36,7 @@ var UserSchema = new Schema({
     },
     verified: {
         type: Boolean,
-        required: true
+        required: false
     },
     //account id
     ripplePublicAddress: {

@@ -3,7 +3,10 @@ var bodyParser = require("body-parser");
 var User = require("./../models/User");
 var mongoose = require('mongoose');
 var fs = require('fs');
-var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken')
+
+
+
 // var nev = require('email-verification')(mongoose);
 
 //nodemailer setup
@@ -64,20 +67,12 @@ function makeRandomString() {
 // generating the model, pass the User model defined earlier
 // nev.generateTempUserModel(User);
 
-module.exports = function(app) {
+module.exports = function(apiRoutes, app) {
 
-    //get all users
-    app.get("/api/users", function(req, res) {
-        User.find({}, function(err, doc) {
-            if (err)
-                throw err;
 
-            res.json(doc);
-        });
-    });
 
     //get specific user
-    app.get("/api/users/id/:id", function(req, res) {
+    apiRoutes.get("/users/id/:id", function(req, res) {
         User.findById(req.params.id, function(err, doc) {
             if (err)
                 throw err;
@@ -86,7 +81,7 @@ module.exports = function(app) {
     });
 
     //create user and trigger email verification
-    app.post("/api/users/new", function(req, res) {
+    apiRoutes.post("/users/new", function(req, res) {
         console.log(req.body.userName, req.body.password, req.body.email, req.body.phoneNumber);
         var verificationString = makeRandomString();
         console.log("verification string: " + verificationString);
@@ -94,9 +89,8 @@ module.exports = function(app) {
         var verificationUrl = "http://localhost:3030/api/users/verify/" + verificationString;
         //Add password hashing here
 
-
         User.create({
-            username: req.body.userName,
+
             password: req.body.password,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
@@ -184,7 +178,7 @@ module.exports = function(app) {
     });
 
     //user verification update
-    app.put("/api/users/verify/:url", function(req, res) {
+    apiRoutes.put("/users/verify/:url", function(req, res) {
         var url = req.params.url;
         console.log(url);
 
@@ -220,4 +214,80 @@ module.exports = function(app) {
         //         // redirect to sign-up
         // });
     });
+    // route to authenticate a user (POST http://localhost:8080/api/authenticate)
+    apiRoutes.post('/authenticate', function(req, res) {
+
+        // find the user
+        User.findOne({
+            email: req.body.email
+        }, function(err, user) {
+
+            if (err)
+                throw err;
+
+            if (!user) {
+                res.json({success: false, message: 'Authentication failed. User not found.'});
+            } else if (user) {
+
+                // check if password matches
+                if (user.password != req.body.password) {
+                    res.json({success: false, message: 'Authentication failed. Wrong password.'});
+                } else {
+
+                    // if user is found and password is right
+                    // create a token
+                    var token = jwt.sign(user, app.get('superSecret'), {
+                        expiresIn: 60*30
+                    });
+
+                    // return the information including token as JSON
+                    res.json({success: true, message: 'Enjoy your token!', token: token});
+                }
+
+            }
+
+        });
+    });
+
+            // route middleware to verify a token
+        apiRoutes.use(function(req, res, next) {
+
+          // check header or url parameters or post parameters for token
+          var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+          // decode token
+          if (token) {
+
+            // verifies secret and checks exp
+            jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+              if (err) {
+                return res.json({ success: false, message: 'Failed to authenticate token.' });
+              } else {
+                // if everything is good, save to request for use in other routes
+                req.decoded = decoded;
+                next();
+              }
+            });
+
+          } else {
+
+            // if there is no token
+            // return an error
+            return res.status(403).send({
+                success: false,
+                message: 'No token provided.'
+            });
+
+          }
+        });
+
+        //get all users
+        apiRoutes.get("/users", function(req, res) {
+            User.find({}, function(err, doc) {
+                if (err)
+                    throw err;
+
+                res.json(doc);
+            });
+        });
 }
