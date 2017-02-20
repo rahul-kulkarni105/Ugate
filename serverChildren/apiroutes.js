@@ -2,7 +2,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var User = require("./../models/User");
 var mongoose = require('mongoose');
-// var nev = require('email-verification')(mongoose);
+ // var nev = require('email-verification')(mongoose);
 
 //nodemailer setup
 var nodemailer = require('nodemailer');
@@ -83,19 +83,18 @@ module.exports = function(app) {
 
     //create user and trigger email verification
     app.post("/api/users/new", function(req,res){
+      console.log(req.body.userName, req.body.password, req.body.email, req.body.phoneNumber);
         var verificationString = makeRandomString();
-        console.log("verification string: " + randomString);
+        console.log("verification string: " + verificationString);
         //Change this URL in production
         var verificationUrl = "http://localhost:3030/api/users/verify/" + verificationString;
         //Add password hashing here
-        var newUser = new User({username:req.body.username, password:req.body.password, email:req.body.email, phonenumber:req.body.phoneNumber, ripplePublicAddress:req.body.ripplePublicAddress, verificationString:verificationString, verified: false});
+        User.create({username:req.body.userName, password:req.body.password, email:req.body.email, phoneNumber:req.body.phoneNumber, ripplePublicAddress:req.body.ripplePublicAddress, verificationString:verificationString, verified: false}, function(err){
+          if (err) {
+            console.log(err);
+          }
+          else {
 
-        newUser.save(function(err,doc){
-            if (err) throw err;
-            //email verification steps here?
-
-            //Without adding a custom domain on mailgun, can only send emails to authorized recipients
-            //Once custom domain is added, change the 'to:' to users email (req.body.email)
             transport.sendMail({
                 from: "ugatedonotreply@gmail.com",
                 to: "ugatedonotreply@gmail.com",
@@ -105,9 +104,28 @@ module.exports = function(app) {
                 if (err) throw err;
                 console.log(info);
             });
-
-            res.send({doc});
+            res.send("Saved User");
+          }
         });
+
+        // newUser.save(function(err,doc){
+        //     if (err) throw err;
+            //email verification steps here?
+
+            //Without adding a custom domain on mailgun, can only send emails to authorized recipients
+            //Once custom domain is added, change the 'to:' to users email (req.body.email)
+        //     transport.sendMail({
+        //         from: "ugatedonotreply@gmail.com",
+        //         to: "ugatedonotreply@gmail.com",
+        //         subject: "Verification required for Ugate",
+        //         text: "Please click the following link to verify your account. \n" + verificationUrl
+        //     }, function(err, info) {
+        //         if (err) throw err;
+        //         console.log(info);
+        //     });
+        //
+        //     res.send({doc});
+        // });
 
         //TRYING TO SETUP EMAIL VERIFICATION WITHOUT NEV
         // nev.createTempUser(newUser, function(err, existingPersistentUser, newTempUser) {

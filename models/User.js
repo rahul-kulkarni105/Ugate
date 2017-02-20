@@ -9,12 +9,13 @@ var UserSchema = new Schema({
   username: {
   	type: String,
   	required: true,
-  	unique: true,
-  	validate: [
-  	function(input){
-  		return input.length >= 6
-  	},
-  	"Username must be 6 or more characters"]
+  	unique: true
+
+  	// validate: [
+  	// function(input){
+  	// 	return input.length >= 6
+  	// },
+  	// "Username must be 6 or more characters"]
   },
   password: {
   	type: String,
@@ -23,13 +24,14 @@ var UserSchema = new Schema({
   email: {
   	type: String,
   	required: true,
-    match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+    // match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
   },
-  phonenumber: {
-  	type: Number,
+  phoneNumber: {
+  	type: String,
   	required: true,
   	validate: [
   	function(input){
+      console.log(input.length);
   		return input.length === 10
   	},
   	"Please enter a valid phone number"]
@@ -42,37 +44,37 @@ var UserSchema = new Schema({
     required: true
   },
   //account id
-  ripplepublicaddress: {
+  ripplePublicAddress: {
   	type: String,
-  	required: true,
+  	// required: true,
   	unique: true
   },
   //default current date, maybe use date as string and use momentjs?
-  accountcreation: {
+  accountCreation: {
     type: Date,
     default: Date.now
   },
   history: {
-  	currentbalance: [Number],
+  	currentBalance: [Number],
   	deposits: [Number],
   	withdraws: [Number],
-  	senttoripple: [Number],
-  	depositsfromripple: [Number],
+  	sentToRipple: [Number],
+  	depositsFromRipple: [Number],
     //date maybe a string and use momentjs?
-    lastmodified: [Date]
+    lastModified: [Date]
   },
-  usid: {
-  	front: {
-      data: Buffer,
-  		type: String,
-  		required: true
-  	},
-  	back: {
-      data: Buffer,
-  		type: String,
-  		required: true
-  	}
-  },
+  // usid: {
+  // 	front: {
+  //     data: Buffer,
+  // 		type: String,
+  // 		required: true
+  // 	},
+  // 	back: {
+  //     data: Buffer,
+  // 		type: String,
+  // 		required: true
+  // 	}
+  // },
   lock: {
   	type: Boolean,
   	default: false

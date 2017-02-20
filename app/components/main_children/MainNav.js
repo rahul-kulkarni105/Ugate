@@ -1,6 +1,6 @@
 // Include React
 import React from "react";
-import helpers from "./../utils/helpers.js";
+// import helpers from "./utils/helpers.js";
 
 import {Link} from 'react-router';
 
@@ -16,7 +16,7 @@ export default class MainNav extends React.Component {
                         <div className="navbar-brand">
                             <Link to="/">
                             <img alt="uGate Icon" src="./images/ugatelogo.png"/>
-                            
+
                                 uGate &reg;</Link>
                         </div>
                     </div>

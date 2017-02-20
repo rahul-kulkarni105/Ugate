@@ -1,28 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import helpers from "./../utils/helpers.js";
+import {createUser} from "../utils/helpers.js";
 import {Link} from "react-router";
+console.log(createUser)
 export default class SignUp extends React.Component{
   //Constructor function to set initial states
   constructor(props){
     super(props),
     this.state = {
-      firstName: undefined,
-      lastName: undefined,
-      address: undefined,
-      city: undefined,
-      state: undefined,
-      zip: undefined,
-      userName: undefined,
-      emailAddress: undefined,
-      confirmEmailAddress: undefined,
-      password: undefined,
-      confirmPassword: undefined,
-      signupdetails: undefined
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      phoneNumber: '',
+      userName: '',
+      emailAddress: '',
+      confirmEmailAddress: '',
+      password: '',
+      confirmPassword: '',
+      signupdetails: ''
 
     }
 
-    this.setSignup = this.setSignup.bind(this);
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     /*this.handleFirstChange = this.handleFirstChange.bind(this);
@@ -37,14 +39,18 @@ export default class SignUp extends React.Component{
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);*/
   }
-  setSignup(signup){
-    this.setState({signupdetails: signup});
-    console.log(this.state.signupdetails);
+  componentDidUpdate(prevProps, prevState){
+    console.log("fuck off")
   }
   handleSubmit(event){
     alert("Welcome to UGate. We sent you an email to verify your account.")
     event.preventDefault();
-    this.setSignup({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, userName: this.state.userName, email: this.state.emailAddress, confirmEmailAddress: this.state.confirmEmailAddress, password: this.state.password, confirmPassword: this.state.confirmPassword});
+     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, userName: this.state.userName, email: this.state.emailAddress, password: this.state.password});
+
+
+     event.preventDefault();
+
+
   }
   handleChange(event){
     var newState = {};
@@ -163,15 +169,15 @@ export default class SignUp extends React.Component{
                 <label className="col-md-2 control-label" htmlFor="formZip">
               Zip Code: </label>
                 <div className="col-md-9">
-                  <input type="number" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
+                  <input type="text" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
                 </div>
               </div>
             </div>
             <div className="form-group">
               <div className="row">
-                <label className="col-md-2" htmlFor="formPhonenumber">Cell phone:</label>
+                <label className="col-md-2" htmlFor="formPhonenumber">Cell phone(555-555-5555):</label>
                 <div className="col-md-9">
-                  <input type="text" className="form-control" id="cellPhone" value="(555)555-555" onChange={this.handleChange} required/>
+                  <input type="text" className="form-control" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange} required/>
                 </div>
               </div>
             </div>

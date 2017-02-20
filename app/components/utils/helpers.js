@@ -1,12 +1,20 @@
 import axios from 'axios'
 
-export const helpers = {
-
-  getHistory(){
+export function getHistory() {
     return axios.get("/history");
-  },
-  createUser(userInfo){
-      return axios.get("/api/users/new", {username: userInfo.username, password: userInfo.password, email: userInfo.email, phoneNumber: userInfo.phoneNumber, ripplePublicAddress: userInfo.ripplePublicAddress});
-  }
+}
 
+export function createUser(userInfo) {
+  console.log(userInfo);
+    return axios.post("/api/users/new", {
+        userName: userInfo.userName,
+        password: userInfo.password,
+        email: userInfo.email,
+        phoneNumber: userInfo.phoneNumber,
+        ripplePublicAddress: userInfo.ripplePublicAddress
+    }).then(function(response) {
+        console.log(response);
+    }).catch(function(error) {
+        console.log(error);
+    });
 }

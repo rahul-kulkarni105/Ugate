@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import helpers from "./../utils/helpers.js";
+
 
 //Login component
 const styles = {
