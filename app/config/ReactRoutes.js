@@ -18,12 +18,17 @@ module.exports = (
     <Router history={browserHistory}>
         <Route path="/" component={Main}>
             <Route path="/SignUp" component={SignUp} />
-
-
             <IndexRoute component={Login}/>
         </Route>
         <Route path="/Dashboard" component={Dashboard}>
-
+            <Route path="/AddPaymentMethod" component={AddPaymentMethod} />
+            <Route path="/Deposit" component={Deposit} />
+            <Route path="/History" component={History} />
+            <Route path="/SendToRipple" component={SendToRipple} />
+            <Route path="/Upload" component={Upload} />
+            <Route path="/Withdraw" component={Withdraw} />
+            
+            <IndexRoute component={History}/>
         </Route>
     </Router>
 );
