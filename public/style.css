@@ -1,4 +1,4 @@
-/*.padd{
+.padd{
   padding-top: 10%;
 }
 body {
@@ -48,7 +48,7 @@ body {
 
 body {
     overflow-x: hidden;
- }*/
+ }
 
 /* Toggle Styles */
 
