@@ -1,29 +1,32 @@
 import React from 'react'
-import AddPaymentMethod from './grandchildren/AddPaymentMethod'
-import Deposit from './grandchildren/Deposit'
-import History from './grandchildren/History'
-import LogOut from './grandchildren/LogOut'
-import SendToRipple from './grandchildren/SendToRipple'
-import Upload from './grandchildren/Upload'
-import Withdraw from './grandchildren/Withdraw'
+import {Link} from 'react-router'
+
+export default class SideNav extends React.Component {
+    render() {
+        return (
 
 
-export default class SideNav extends React.Component{
-  render(){
-    return(
-      <div className="row">
-        <div className="row">
-          {/* logo goes here */}
-          <AddPaymentMethod />
-          <Deposit />
-          <History />
-          <LogOut />
-          <SendToRipple />
-          <Upload />
-          <Withdraw />
-        </div>
-      </div>
 
-    );
-  }
+          <div id="sidebar-wrapper">
+              <ul className="sidebar-nav">
+                <li className="sidebar-brand">
+                    <a href="#">
+                       uGate
+                    </a>
+                </li>
+                {/* logo goes here */}
+                <li><Link to="/AddPaymentMethod">AddPaymentMethod</Link></li>
+                <li><Link to="/Deposit">Deposit</Link></li>
+                <li><Link to="/History">History</Link></li>
+                <li><Link to="/SendToRipple">SendToRipple</Link></li>
+                <li><Link to="/Upload">Upload</Link></li>
+                <li><Link to="/Withdraw">Withdraw</Link></li>
+                <li><Link to="/">LogOut</Link></li>
+              </ul>
+            </div>
+
+
+
+        );
+    }
 }

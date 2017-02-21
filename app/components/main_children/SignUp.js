@@ -16,7 +16,6 @@ export default class SignUp extends React.Component{
       zip: '',
       phoneNumber: '',
       ripplePublicAddress: '',
-      userName: '',
       emailAddress: '',
       confirmEmailAddress: '',
       password: '',
@@ -42,7 +41,7 @@ export default class SignUp extends React.Component{
     //prevents page refresh
     event.preventDefault();
     //call create user function from helpers and send object of user information
-     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress, userName: this.state.userName, email: this.state.emailAddress, password: this.state.password, });
+     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress,email: this.state.emailAddress, password: this.state.password, });
 
 
 

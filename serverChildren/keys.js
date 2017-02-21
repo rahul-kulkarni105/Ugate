@@ -1,10 +1,14 @@
-export const Stripe= {
+module.exports = {
+    Stripe: {
 
-Test_Secret_Key: sk_test_cLCn1Z8WxlVj41JaEULqSjjk,
-Test_Publishable_Key: pk_test_pdpXM9EGipPGJEg5bZDdtxpm,
-Live_Secret_Key: sk_live_gun9YqDbx9flAIVAz6CYF6X4,
-Live_Publishable_Key: pk_live_yW9zNWDAKNQBQz9mFC2pbJLa
+        Test_Secret_Key: "sk_test_cLCn1Z8WxlVj41JaEULqSjjk",
+        Test_Publishable_Key: "pk_test_pdpXM9EGipPGJEg5bZDdtxpm",
+        Live_Secret_Key: "sk_live_gun9YqDbx9flAIVAz6CYF6X4",
+        Live_Publishable_Key: "pk_live_yW9zNWDAKNQBQz9mFC2pbJLa"
 
+    },
+
+    Secret:{
+        secret: "238afjk4nfsou8dfsaknfl48jsllj9"
+    }
 }
-
-module.exports = Stripe;

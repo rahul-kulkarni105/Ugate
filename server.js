@@ -8,9 +8,13 @@ var mongoose = require("mongoose");
 var jwt = require ("jsonwebtoken");
 var User = require("./models/User.js");
 var Safe = require("./models/Safe.js");
+var secret = require('./serverChildren/keys').Secret;
+
+
 
 // Initialize Express
 var app = express();
+var apiRoutes = express.Router();
 
 var PORT = process.env.PORT || 3030;
 
@@ -22,6 +26,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Make public a static dir
 app.use(express.static("./public"));
 
+//set secret for JWT
+app.set('superSecret', secret.secret);
+
+app.use('/api', apiRoutes);
+
 
 // Database configuration with mongoose -- local for now
 mongoose.connect("mongodb://localhost/ugate");
@@ -31,7 +40,7 @@ var db = mongoose.connection;
 Grid.mongo = mongoose.mongo;
 
 //require routes
-require("./serverChildren/apiroutes.js")(app);
+require("./serverChildren/apiroutes.js")(apiRoutes, app);
 
 // Show any mongoose errors
 db.on("error", function(error) {
@@ -67,10 +76,6 @@ db.once("open", function() {
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
-
-//routes for any api calls - creating user, validating user
-
-
 
 
 

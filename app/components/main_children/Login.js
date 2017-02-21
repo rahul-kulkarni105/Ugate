@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Link} from 'react-router';
+import {login} from './../utils/helpers'
 
 //Login component
 const styles = {
@@ -21,28 +22,25 @@ export default class Login extends React.Component{
   constructor(props){
     super(props),
     this.state = {
-      username: "",
+      email: "",
       password: "",
-      logindetails: ""
+
     }
-    this.setLogin = this.setLogin.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
   }
-  setLogin(login){
-    this.setState({logindetails: login});
-    console.log(this.state.logindetails);
-  }
   handleSubmit(event){
+    login({email: this.state.email, password: this.state.password});
     event.preventDefault();
     //console.log(ReactDOM.findDOMNode(this.username).value);
     //this.setLogin({username: ReactDOM.findDOMNode(this.username).value, password: ReactDOM.findDOMNode(this.password).value});
-    this.setLogin({username: this.state.username, password: this.state.password});
+
   }
   handleUserChange(event){
     this.setState({
-      username: event.target.value
+      email: event.target.value
     });
   }
   handlePassChange(event){
@@ -61,9 +59,9 @@ export default class Login extends React.Component{
           <br />
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Email or Username</label>
+              <label htmlFor="username">Email</label>
               {' '}
-              <input type="text"  onChange={this.handleUserChange} value={this.state.username} required placeholder="Email or Username" />
+              <input type="text"  onChange={this.handleUserChange} value={this.state.email} required placeholder="Email" />
 
             {' '}
             <div className="form-group">
@@ -76,7 +74,8 @@ export default class Login extends React.Component{
             <button className="btn btn-default" type="submit">
               Log in
             </button>
-            </Link>
+          </Link>
+
             {' '}
             <a>Forgot Password?</a>
           </div>
