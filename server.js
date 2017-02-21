@@ -1,8 +1,8 @@
 // Dependencies
 var express = require("express");
 var fs = require('fs');
-
-var multer = require('multer');
+var Grid = require('gridfs-stream');
+//var multer = require('multer');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var jwt = require ("jsonwebtoken");
@@ -36,6 +36,9 @@ app.use('/api', apiRoutes);
 mongoose.connect("mongodb://localhost/ugate");
 var db = mongoose.connection;
 
+//Gridfs-stream to save file uploads
+Grid.mongo = mongoose.mongo;
+
 //require routes
 require("./serverChildren/apiroutes.js")(apiRoutes, app);
 
@@ -47,6 +50,24 @@ db.on("error", function(error) {
 // Once logged in to the db through mongoose, log a success message
 db.once("open", function() {
   console.log("Mongoose connection successful.");
+  /*var gfs = Grid(db.db);
+  //streaming to gridfs
+  //filename to store in mongodb
+  var writestream = gfs.createWriteStream({
+  	filename: 'usID.txt'
+  });
+  fs.createReadStream('./serverChildren').pipe(writestream);
+  writestream.on('close', function(file){
+  	console.log(file.filename + "written to DB");
+  });
+  //streaming from gridfs
+  var readstream = gfs.createReadStream({
+  	filename: 'usID.txt'
+  });
+  readstream.on('error', function(err){
+  	console.log("error occurred");
+  	throw err;
+  })*/
 });
 
 

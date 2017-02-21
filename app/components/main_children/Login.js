@@ -12,8 +12,10 @@ const styles = {
     flexDirection: 'column',
     textAlign: 'center',
     padding: "10%",
-    background: 'rgb(179, 236, 255)',
-    background: 'rgba(179, 236, 255, .8'
+    //background: 'rgb(179, 236, 255)',
+    //background: 'rgba(179, 236, 255, 0'
+    background: 'rgb(255,255,255)',
+    background: 'rgba(255,255,255,.8)'
   }
 }
 export default class Login extends React.Component{
