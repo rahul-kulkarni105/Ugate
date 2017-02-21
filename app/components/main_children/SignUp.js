@@ -38,7 +38,7 @@ export default class SignUp extends React.Component{
 
   handleSubmit(event){
     //alerts user that they have been sent an email to veriffy account
-    alert("Welcome to UGate. We sent you an email to verify your account.")
+    //alert("Welcome to UGate. We sent you an email to verify your account.")
     //prevents page refresh
     event.preventDefault();
     //call create user function from helpers and send object of user information
@@ -58,138 +58,168 @@ export default class SignUp extends React.Component{
 
 
 <div >
-          <form className="form-horizontal" onSubmit={this.handleSubmit}>
+          <form className="form-horizontal" onSubmit={this.handleSubmit} role="form" data-toggle="validator">
             <fieldset>
               <legend>Sign Up</legend>
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formFirstName">
               First Name: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formLastName">
               Last Name: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="lastName" value={this.state.lastName} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formAddress">
               Address: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="address" value={this.state.address} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formCity">
               City: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="city" value={this.state.city} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formState">
               State: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="state" value={this.state.state} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formZip">
               Zip Code: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
+                  <input type="text" className="form-control" id="zip" data-minlength="5" value={this.state.zip} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group">
+            <div className="form-group has-feedback">
 
-                <label className="col-lg-2" htmlFor="formPhonenumber">Cell phone(555-555-5555):</label>
+                <label className="col-lg-2" htmlFor="formPhonenumber">Cell phone(5555555555):</label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange} required/>
+                  <input type="text" className="form-control" id="phoneNumber" pattern="^\d+$" data-minlength="10" data-maxlength="10" value={this.state.phoneNumber} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="rpa">
               RipplePublicAddress: </label>
                 <div className="col-lg-10">
                   <input type="text" className="form-control" id="ripplePublicAddress" value={this.state.ripplePublicAddress} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formUsername">
               Username: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="userName" value={this.state.userName} onChange={this.handleChange} required/>
+                  <input type="text" className="form-control" id="userName" data-minlength="6" value={this.state.userName} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formEmail">
               Email Address: </label>
                 <div className="col-lg-10">
-                  <input type="email" className="form-control" id="emailAddress" value={this.state.emailAddress} onChange={this.handleChange} required/>
+                  <input type="email" className="form-control" id="emailAddress" data-error="That email address is invalid" value={this.state.emailAddress} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formConfEmail">
               Confirm Email Address: </label>
                 <div className="col-lg-10">
-                  <input type="email" className="form-control" id="confirmEmailAddress" value={this.state.confirmEmailAddress} onChange={this.handleChange} required/>
+                  <input type="email" className="form-control" data-match="#emailAddress" data-match-error="These emails don't match" id="confirmEmailAddress" value={this.state.confirmEmailAddress} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formPassword">
               Password: </label>
                 <div className="col-lg-10">
-                  <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChange} required/>
+                  <input type="password" className="form-control" id="password" data-minlength="6" value={this.state.password} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group" >
+            <div className="form-group has-feedback" >
 
                 <label className="col-lg-2 control-label" htmlFor="formConfPassword">
               Confirm Password: </label>
                 <div className="col-lg-10">
-                  <input type="password" className="form-control" id="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} required/>
+                  <input type="password" className="form-control" id="confirmPassword" data-match="#password" data-match-error="These passwords don't match" value={this.state.confirmPassword} onChange={this.handleChange} required/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group">
+            <div className="form-group has-feedback">
 
                 <label className="col-lg-2 control-label" htmlFor="exampleInputFile">Upload US ID front:</label>
                 <div className="col-lg-10">
                   <input type="file" id="idFront" value={this.state.idFront} onChange={this.handleChange}/>
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
-            <div className="form-group">
+            <div className="form-group has-feedback">
 
                 <label className="col-lg-2 control-label" htmlFor="exampleInputFile">Upload US ID back:</label>
                 <div className="col-lg-10">
                   <input type="file" id="idBack" value={this.state.idBack} onChange={this.handleChange} />
+                  <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+                  <div className="help-block with-errors"></div>
                 </div>
               </div>
 
@@ -201,6 +231,7 @@ export default class SignUp extends React.Component{
               <label className="form-check-label">
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
+              <div className="help-block with-errors"></div>
               <br />
 
               <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>

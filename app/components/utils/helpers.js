@@ -23,8 +23,10 @@ export function createUser(userInfo) {
 
     }).then(function(response) {
         console.log(response);
+        alert("Welcome to UGate. We sent you an email to verify your account.");
     }).catch(function(error) {
         console.log(error);
+        alert("One of the fields is not filled in correctly");
     });
 }
 
