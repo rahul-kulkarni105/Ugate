@@ -3,6 +3,13 @@ import ReactDOM from "react-dom";
 import {createUser} from "../utils/helpers.js";
 import {Link} from "react-router";
 console.log(createUser)
+const styles = {
+  signupstyle: {
+     background: 'rgb(255,255,255)',
+    background: 'rgba(255,255,255,.8)'
+  }
+ 
+}
 export default class SignUp extends React.Component{
   //Constructor function to set initial states
   constructor(props){
@@ -57,7 +64,7 @@ export default class SignUp extends React.Component{
     return (
 
 
-<div >
+<div style={styles.signupstyle}>
           <form className="form-horizontal" onSubmit={this.handleSubmit} role="form" data-toggle="validator">
             <fieldset>
               <legend>Sign Up</legend>
