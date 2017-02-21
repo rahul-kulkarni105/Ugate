@@ -17,6 +17,7 @@ export default class SignUp extends React.Component{
       phoneNumber: '',
       ripplePublicAddress: '',
       emailAddress: '',
+      userName: '',
       confirmEmailAddress: '',
       password: '',
       confirmPassword: '',
@@ -41,8 +42,8 @@ export default class SignUp extends React.Component{
     //prevents page refresh
     event.preventDefault();
     //call create user function from helpers and send object of user information
-     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress,email: this.state.emailAddress, password: this.state.password, });
-
+     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress,userName: this.state.userName, email: this.state.emailAddress, password: this.state.password, });
+      event.preventDefault();
 
 
 
@@ -201,9 +202,9 @@ export default class SignUp extends React.Component{
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
               <br />
-              <Link to="/SignUp/AuthInputPhoneNumber">
+
               <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
-              </Link>
+
               </div>
               </div>
 
