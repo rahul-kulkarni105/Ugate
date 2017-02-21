@@ -11,6 +11,7 @@ export function createUser(userInfo) {
 
         password: userInfo.password,
         email: userInfo.email,
+        userName: userInfo.userName,
         phoneNumber: userInfo.phoneNumber,
         ripplePublicAddress: userInfo.ripplePublicAddress,
         firstName: userInfo.firstName,

@@ -1,15 +1,16 @@
 import React from 'react'
 
+
 export default class Cc extends React.Component {
-    componentWillMount() {
-        // Create an instance of the card Element
-        var card = elements.create('card');
-
-        // Add an instance of the card Element into the `card-element` <div>
-        card.mount('#card-element');
-
-    },
+    componentWillMount() {}
     componentDidMount() {
+        const stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+        // Create an instance of the card Elemen
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+        // Add an instance of the card Element into the `card-element` <div>
+
         card.addEventListener('change', function(event) {
             var displayError = document.getElementById('payment-errors');
             if (event.error) {
@@ -17,7 +18,7 @@ export default class Cc extends React.Component {
             }
         });
 
-    },
+    }
     stripeTokenHandler(token) {
         // Insert the token ID into the form so it gets submitted to the server
         var form = document.getElementById('payment-form');
@@ -29,7 +30,7 @@ export default class Cc extends React.Component {
 
         // Submit the form
         form.submit();
-    },
+    }
     handleSubmit(event) {
         // Create a token or display an error the form is submitted.
         var form = document.getElementById('payment-form');
@@ -49,25 +50,25 @@ export default class Cc extends React.Component {
         });
         alert('An essay was submitted: ' + this.state.value);
         event.preventDefault();
-    },
+    }
     render() {
         return (
-            <form action="/charge" method="post" id="payment-form" onSubmit={this.handleSubmit}>
+
+            <form action="/charge" method="post" id="payment-form">
                 <div className="form-row">
-                    <label>
-                        <span>Card</span>
-                        <div id="card-element">
-                            <!-- a Stripe Element will be inserted here. -->
-                        </div>
+                    <label htmlFor="card-element" className="text-success">
+                        Credit or debit card
                     </label>
+                    <div id="card-element">
+
+                    </div>
+
+
+                    <div id="card-errors"></div>
                 </div>
 
-                <!-- Used to display form errors -->
-                <div id="payment-errors"></div>
-
-                <input type="submit" className="submit" value="Submit Payment"/>
+                <button className="btn btn-success">Submit Payment</button>
             </form>
-          )
+          );
         }
       }
-        

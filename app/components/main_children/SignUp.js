@@ -17,6 +17,7 @@ export default class SignUp extends React.Component{
       phoneNumber: '',
       ripplePublicAddress: '',
       emailAddress: '',
+      userName: '',
       confirmEmailAddress: '',
       password: '',
       confirmPassword: '',
@@ -41,8 +42,8 @@ export default class SignUp extends React.Component{
     //prevents page refresh
     event.preventDefault();
     //call create user function from helpers and send object of user information
-     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress,email: this.state.emailAddress, password: this.state.password, });
-
+     createUser({firstName: this.state.firstName, lastName: this.state.lastName, address: this.state.address, city: this.state.city, state: this.state.state, zip: this.state.zip, phoneNumber: this.state.phoneNumber, ripplePublicAddress: this.state.ripplePublicAddress,userName: this.state.userName, email: this.state.emailAddress, password: this.state.password, });
+      event.preventDefault();
 
 
 
@@ -55,162 +56,163 @@ export default class SignUp extends React.Component{
   render() {
     return (
 
-        <div className="panel panel-default padd">
-        <div className="panel-heading"> Sign Up</div>
-          <form onSubmit={this.handleSubmit}>
 
+<div >
+          <form className="form-horizontal" onSubmit={this.handleSubmit}>
+            <fieldset>
+              <legend>Sign Up</legend>
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formFirstName">
+
+                <label className="col-lg-2 control-label" htmlFor="formFirstName">
               First Name: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formLastName">
+
+                <label className="col-lg-2 control-label" htmlFor="formLastName">
               Last Name: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="lastName" value={this.state.lastName} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formAddress">
+
+                <label className="col-lg-2 control-label" htmlFor="formAddress">
               Address: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="address" value={this.state.address} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formCity">
+
+                <label className="col-lg-2 control-label" htmlFor="formCity">
               City: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="city" value={this.state.city} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formState">
+
+                <label className="col-lg-2 control-label" htmlFor="formState">
               State: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="state" value={this.state.state} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formZip">
+
+                <label className="col-lg-2 control-label" htmlFor="formZip">
               Zip Code: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="zip" value={this.state.zip} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group">
-              <div className="row">
-                <label className="col-md-2" htmlFor="formPhonenumber">Cell phone(555-555-5555):</label>
-                <div className="col-md-9">
+
+                <label className="col-lg-2" htmlFor="formPhonenumber">Cell phone(555-555-5555):</label>
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="rpa">
+
+                <label className="col-lg-2 control-label" htmlFor="rpa">
               RipplePublicAddress: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="ripplePublicAddress" value={this.state.ripplePublicAddress} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formUsername">
+
+                <label className="col-lg-2 control-label" htmlFor="formUsername">
               Username: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="text" className="form-control" id="userName" value={this.state.userName} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formEmail">
+
+                <label className="col-lg-2 control-label" htmlFor="formEmail">
               Email Address: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="email" className="form-control" id="emailAddress" value={this.state.emailAddress} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formConfEmail">
+
+                <label className="col-lg-2 control-label" htmlFor="formConfEmail">
               Confirm Email Address: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="email" className="form-control" id="confirmEmailAddress" value={this.state.confirmEmailAddress} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formPassword">
+
+                <label className="col-lg-2 control-label" htmlFor="formPassword">
               Password: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group" >
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="formConfPassword">
+
+                <label className="col-lg-2 control-label" htmlFor="formConfPassword">
               Confirm Password: </label>
-                <div className="col-md-9">
+                <div className="col-lg-10">
                   <input type="password" className="form-control" id="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange} required/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group">
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="exampleInputFile">Upload US ID front:</label>
-                <div className="col-md-9">
+
+                <label className="col-lg-2 control-label" htmlFor="exampleInputFile">Upload US ID front:</label>
+                <div className="col-lg-10">
                   <input type="file" id="idFront" value={this.state.idFront} onChange={this.handleChange}/>
                 </div>
               </div>
-            </div>
+
             <div className="form-group">
-              <div className="row">
-                <label className="col-md-2 control-label" htmlFor="exampleInputFile">Upload US ID back:</label>
-                <div className="col-md-9">
+
+                <label className="col-lg-2 control-label" htmlFor="exampleInputFile">Upload US ID back:</label>
+                <div className="col-lg-10">
                   <input type="file" id="idBack" value={this.state.idBack} onChange={this.handleChange} />
                 </div>
               </div>
-            </div>
+
             <div className="form-check">
-            <div className="row">
-            <div className="col-md-2">
+
+            <div className="col-lg-2">
             </div>
-              <div className="col-md-9">
+              <div className="col-lg-10">
               <label className="form-check-label">
                 <input type="checkbox" className="form-check-input"/> <a data-toggle="modal" data-target="#termsModal"> Terms of Service </a>
               </label>
               <br />
-              <Link to="/SignUp/AuthInputPhoneNumber">
+
               <button className="btn btn-default" type="submit" /*onSubmit={this.handleSubmit}*/>Submit</button>
-              </Link>
+
               </div>
               </div>
-            </div>
 
 
 
 
 
+          </fieldset>
 
           </form>
 
@@ -231,8 +233,10 @@ export default class SignUp extends React.Component{
               </div>
             </div>
           </div>
-          {this.props.children}
-      </div>
+           {this.props.children}
+        </div>
+
+
 
     );
   }
