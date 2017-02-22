@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {createUser} from "../utils/helpers.js";
 import {Link} from "react-router";
-import $ from 'jquery';
 const styles = {
   signupstyle: {
      background: 'rgb(255,255,255)',
@@ -42,6 +41,11 @@ export default class SignUp extends React.Component{
   }
   componentDidMount(){
     $(document).ready(function(){
+      if(jQuery){
+        console.log("loaded");
+      }else{
+        console.log("notloaded");
+      }
       $("#signupForm").bootstrapValidator();
     });
   }
@@ -71,7 +75,7 @@ export default class SignUp extends React.Component{
           data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
           data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
           data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
-          data-bv-submitbuttons='button[type="submit"]'
+          /*data-bv-submitbuttons='button[type="submit"]'*/
           data-bv-live="enabled" 
           className="form-horizontal" onSubmit={this.handleSubmit}>
             <fieldset>
@@ -81,7 +85,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formFirstName">
               First Name: </label>
                 <div className="col-lg-10">
-                  <input type="text" id="firstName" 
+                  <input type="text" id="firstName" name="first"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your first name" 
                   data-bv-regexp="true"
@@ -96,7 +100,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formLastName">
               Last Name: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="lastName" 
+                  <input type="text" className="form-control" id="lastName" name="last"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your last name" 
                   data-bv-regexp="true"
@@ -111,7 +115,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formAddress">
               Address: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="address" 
+                  <input type="text" className="form-control" id="address" name="address"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your address" 
                   value={this.state.address} onChange={this.handleChange}/>
@@ -123,7 +127,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formCity">
               City: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="city" 
+                  <input type="text" className="form-control" id="city" name="city"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your city" 
                   data-bv-regexp="true"
@@ -139,7 +143,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formState">
               State: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="state" 
+                  <input type="text" className="form-control" id="state" name="state"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your state" 
                   data-bv-regexp="true"
@@ -155,11 +159,12 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formZip">
               Zip Code: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" 
+                  <input type="text" className="form-control" name="zip"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your zip code" 
-                  data-bv-zipcode="true"
-                  data-bv-zipcode-message="Please enter a valid zip code"
+                  data-bv-regexp="true"
+                  data-bv-regexp-regexp="^\d{5}(?:[-\s]\d{4})?$"
+                  data-bv-regexp-message="Please fill in a valid zip code"
                   id="zip" value={this.state.zip} onChange={this.handleChange}/>
                   
                 </div>
@@ -170,11 +175,12 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formPhonenumber">
                 Cell phone(5555555555): </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control"
+                  <input type="text" className="form-control" name="phone"
                   data-bv-notempty="true"
                   data-bv-notempty-message="Please fill in your phone number"
-                  data-bv-phone="true"
-                  data-bv-phone-message="Please fill in a valid phone number"
+                  data-bv-regexp="true"
+                  data-bv-regexp-regexp="^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$"
+                  data-bv-regexp-message="Please fill in a valid phone number"
                    id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange}/>
                   
                 </div>
@@ -185,7 +191,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="rpa">
               RipplePublicAddress: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" 
+                  <input type="text" className="form-control" name="rippleadd"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your ripple public address" 
                   data-bv-regexp="true"
@@ -201,7 +207,7 @@ export default class SignUp extends React.Component{
                 <label className="col-lg-2 control-label" htmlFor="formUsername">
               Username: </label>
                 <div className="col-lg-10">
-                  <input type="text" className="form-control" id="userName" 
+                  <input type="text" className="form-control" id="userName" name="userName"
                   data-bv-notempty="true" 
                   data-bv-notempty-message="Please fill in your username" 
                   data-bv-regexp="true"
@@ -304,7 +310,7 @@ export default class SignUp extends React.Component{
               </label>
               <br />
 
-              <button className="btn btn-default" type="submit">Submit</button>
+              <button className="btn btn-default" disabled="disabled" type="submit">Submit</button>
 
               </div>
               </div>
