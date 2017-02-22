@@ -12,7 +12,7 @@ export default class History extends React.Component{
     }.bind(this));
 
     this.state={
-      history: {},
+
       dateTimestamp: Date.now()
     };
   }
@@ -34,7 +34,7 @@ render(){
                     <tbody>
                         <tr>
                             <td>{histDate}</td>
-                            <td>Withdraw?</td>
+                            <td></td>
                             <td>-9000.01</td>
                             <td>50.00</td>
                         </tr>
@@ -50,4 +50,6 @@ render(){
     	</div>
     );
   }
+
+
 }
