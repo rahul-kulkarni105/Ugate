@@ -15,7 +15,6 @@ import SendToRipple from '../components/dashboard_children/grandchildren/SendToR
 import Upload from '../components/dashboard_children/grandchildren/Upload'
 import Withdraw from '../components/dashboard_children/grandchildren/Withdraw'
 import RippleCharts from '../components/dashboard_children/grandchildren/RippleCharts'
-//import RippleSignIn from '../components/dashboard_children/grandchildren/RippleSignIn'
 
 
 module.exports = (
