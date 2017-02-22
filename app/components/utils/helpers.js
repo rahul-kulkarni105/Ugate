@@ -37,16 +37,17 @@ export function login(userInfo) {
         password: userInfo.password
     }).then(function(response) {
 
-
+      console.log(response)
 
     }).catch(function(error) {
         console.log(error);
 
     });
 }
-
+//check to see if user is logged in
 export function checkLogIn() {
     return axios.get('/api/loggedIn').then(function(response) {
+
         return response.data.loggedIn;
 
 
@@ -55,4 +56,19 @@ export function checkLogIn() {
       return false
 
     });
+
+
 }
+
+//load data from data base
+export function loadData(){
+  return axios.get('/api/history').then(function(response){
+
+    return response.data
+  }).catch(function(error) {
+
+    return false
+
+  });
+
+  }
