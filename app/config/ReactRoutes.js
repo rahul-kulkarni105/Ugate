@@ -14,7 +14,8 @@ import LogOut from '../components/dashboard_children/grandchildren/LogOut'
 import SendToRipple from '../components/dashboard_children/grandchildren/SendToRipple'
 import Upload from '../components/dashboard_children/grandchildren/Upload'
 import Withdraw from '../components/dashboard_children/grandchildren/Withdraw'
-
+import RippleCharts from '../components/dashboard_children/grandchildren/RippleCharts'
+import RippleSignIn from '../components/dashboard_children/grandchildren/RippleSignIn'
 
 
 module.exports = (
@@ -28,8 +29,8 @@ module.exports = (
             <Route path="/Deposit" component={Deposit} />
             <Route path="/History" component={History} />
             <Route path="/SendToRipple" component={SendToRipple} />
-            <Route path="/Upload" component={Upload} />
             <Route path="/Withdraw" component={Withdraw} />
+            <Route path="/RippleCharts" component={RippleCharts} />
             <Route path="/LogOut" component={LogOut} />
             <IndexRoute component={History}/>
         </Route>
