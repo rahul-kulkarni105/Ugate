@@ -12,6 +12,7 @@ const styles = {
     flexDirection: 'column',
     textAlign: 'center',
     padding: "10%",
+    paddingBottom: '15%',
     //background: 'rgb(179, 236, 255)',
     //background: 'rgba(179, 236, 255, 0'
     background: 'rgb(255,255,255)',
