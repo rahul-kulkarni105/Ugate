@@ -1,11 +1,16 @@
 import React from 'react'
 import SideNav from './dashboard_children/SideNav'
+import {loadData} from './utils/helpers'
 
 export default class Dashboard extends React.Component {
+
   componentDidMount(){
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+
+
+
   });
   }
     render() {

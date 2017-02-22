@@ -68,14 +68,6 @@ function makeRandomString() {
 
 module.exports = function(apiRoutes, app) {
 
-    //get specific user
-    apiRoutes.get("/users/id/:id", function(req, res) {
-        User.findById(req.params.id, function(err, doc) {
-            if (err)
-                throw err;
-            res.json(doc);
-        });
-    });
 
     //create user and trigger email verification
     apiRoutes.post("/users/new", function(req, res) {
@@ -286,23 +278,31 @@ module.exports = function(apiRoutes, app) {
     });
 
     //logged in route
-    apiRoutes.get("/loggedIn", function(err, res){
+    apiRoutes.get("/loggedIn", function(req, res, next){
         res.json({loggedIn: true});
+        console.log(req.decoded._doc._id)
+
 
       });
 
-    //get all users
-    apiRoutes.get("/users", function(req, res) {
-        User.find({}, function(err, doc) {
-            if (err)
-                throw err;
 
-            res.json(doc);
-        });
-    });
+      //get specific user
+      apiRoutes.get("/history", function(req, res, next) {
+          User.findById(req.decoded._doc._id, function(err, doc) {
+              if (err)
+                  throw err;
+              res.json(doc.history);
+          });
+      });
+
+
 
     //pull info for dashboard
-    apiRoutes.get("/dashboard", function(req, res) {});
+    apiRoutes.get("/dashboard", function(req, res) {
+
+    });
+
+
 
     apiRoutes.post("/charge", function(request, response) {
         // Get the payment token submitted by the form:
