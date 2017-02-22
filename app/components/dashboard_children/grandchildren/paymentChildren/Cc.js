@@ -79,7 +79,7 @@ form.addEventListener('submit', function(event) {
                     <div id="card-errors"></div>
                 </div>
 
-                <button className="btn btn-success">Submit Payment</button>
+                <button className="btn btn-success">Add Patment Method</button>
             </form>
           );
         }
