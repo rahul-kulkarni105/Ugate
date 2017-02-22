@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {Router} from 'react-router'
 //funciton to get history api for user, not finished
 export function getHistory() {
     return axios.get("/history");
@@ -22,7 +22,7 @@ export function createUser(userInfo) {
         zip: userInfo.zip
 
     }).then(function(response) {
-        console.log(response);
+
         alert("Welcome to UGate. We sent you an email to verify your account.");
     }).catch(function(error) {
         console.log(error);
@@ -36,10 +36,23 @@ export function login(userInfo) {
         email: userInfo.email,
         password: userInfo.password
     }).then(function(response) {
-        console.log(response);
+
+
 
     }).catch(function(error) {
         console.log(error);
+
+    });
+}
+
+export function checkLogIn() {
+    return axios.get('/api/loggedIn').then(function(response) {
+        return response.data.loggedIn;
+
+
+    }).catch(function(error) {
+
+      return false
 
     });
 }

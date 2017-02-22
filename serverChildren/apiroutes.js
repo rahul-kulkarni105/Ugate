@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var Cookies = require('cookies');
-
+var bcrypt = require('bcrypt');
 // var nev = require('email-verification')(mongoose);
 
 //nodemailer setup
@@ -219,6 +219,7 @@ module.exports = function(apiRoutes, app) {
             email: req.body.email
         }, function(err, user) {
 
+
             if (err)
                 throw err;
 
@@ -226,36 +227,40 @@ module.exports = function(apiRoutes, app) {
                 res.json({success: false, message: 'Authentication failed. User not found.'});
             } else if (user) {
 
-                // check if password matches
-                if (user.password != req.body.password) {
-                    res.json({success: false, message: 'Authentication failed. Wrong password.'});
-                } else {
+                bcrypt.compare(req.body.password, user.password, function(err, match) {
 
-                    // if user is found and password is right
-                    // create a token
-                    var token = jwt.sign(user, app.get('superSecret'), {expiresIn: 60 *30});
+                    // check if password matches
+                    if (!match) {
+                        res.json({success: false, message: 'Authentication failed. Wrong password.'});
+                    } else {
 
-                    //cookie wiht cookies lib
-                    var cookie = new Cookies(req, res);
+                        // if user is found and password is right
+                        // create a token
+                        var token = jwt.sign(user, app.get('superSecret'), {expiresIn: 60 *30});
 
-                    cookie.set("auth_log", token, {httpOnly: false});
-                    res.writeHead(302, {"Location": "/"})
-                    return res.end("Now let's check.")
+                        //cookie wiht cookies lib
+                        var cookie = new Cookies(req, res);
 
+                        cookie.set("auth_log", token, {httpOnly: false});
+                        console.log(cookie);
 
+                        res.writeHead(302, {"Location": "/"})
 
-                }
+                        return res.end("Now let's check.")
 
+                    }
+                });
             }
 
         });
     });
 
+
     // route middleware to verify a token
     apiRoutes.use(function(req, res, next) {
 
-      //get cookie
-        var token = new Cookies(req,res).get('auth_log');
+        //get cookie
+        var token = new Cookies(req, res).get('auth_log');
         // decode token
         if (token) {
 
@@ -266,6 +271,7 @@ module.exports = function(apiRoutes, app) {
                 } else {
                     // if everything is good, save to request for use in other routes
                     req.decoded = decoded;
+
                     next();
                 }
             });
@@ -279,6 +285,12 @@ module.exports = function(apiRoutes, app) {
         }
     });
 
+    //logged in route
+    apiRoutes.get("/loggedIn", function(err, res){
+        res.json({loggedIn: true});
+
+      });
+
     //get all users
     apiRoutes.get("/users", function(req, res) {
         User.find({}, function(err, doc) {
@@ -290,7 +302,23 @@ module.exports = function(apiRoutes, app) {
     });
 
     //pull info for dashboard
-    apiRoutes.get("/dashboard", function(req, res){
+    apiRoutes.get("/dashboard", function(req, res) {});
+
+    apiRoutes.post("/charge", function(request, response) {
+        // Get the payment token submitted by the form:
+        console.log(response);
+
+        var token = request.body.stripeToken; // Using Express
+
+        // // Charge the user's card:
+        // var charge = stripe.charges.create({
+        //     amount: 1000,
+        //     currency: "usd",
+        //     description: "Example charge",
+        //     source: token
+        // }, function(err, charge) {
+        //     // asynchronously called
+        // });
 
     });
 

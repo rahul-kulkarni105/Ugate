@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Link} from 'react-router';
-import {login} from './../utils/helpers'
+import {login, checkLogIn} from './../utils/helpers';
 
 //Login component
 const styles = {
@@ -25,14 +25,30 @@ export default class Login extends React.Component{
       email: "",
       password: "",
 
+
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
+
+  }
+  componentDidMount(){
+    checkLogIn().then(function(logged){
+      if(logged === true){
+        this.props.router.push('/Dashboard')
+      }
+    }.bind(this));
   }
   handleSubmit(event){
-    login({email: this.state.email, password: this.state.password});
+    login({email: this.state.email, password: this.state.password}).then(function(response){
+      checkLogIn().then(function(logged){
+        if(logged === true){
+          this.props.router.push('/Dashboard')
+        }
+      }.bind(this));
+    }.bind(this));
+
     event.preventDefault();
     //console.log(ReactDOM.findDOMNode(this.username).value);
     //this.setLogin({username: ReactDOM.findDOMNode(this.username).value, password: ReactDOM.findDOMNode(this.password).value});
@@ -48,6 +64,7 @@ export default class Login extends React.Component{
       password: event.target.value
     });
   }
+
   // Here we render the component
   //Link navbar-brand href to homepage
   //Link forgot password to page
@@ -70,11 +87,11 @@ export default class Login extends React.Component{
               <input type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" />
             </div>
             {' '}
-            <Link to="/Dashboard">
-            <button className="btn btn-default" type="submit">
+            {/* <Link to="/Dashboard"> */}
+          <button className="btn btn-default" type="submit">
               Log in
             </button>
-          </Link>
+          {/* </Link> */}
 
             {' '}
             <a>Forgot Password?</a>

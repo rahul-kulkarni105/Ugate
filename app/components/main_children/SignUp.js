@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {createUser} from "../utils/helpers.js";
 import {Link} from "react-router";
-console.log(createUser)
+
 const styles = {
   signupstyle: {
      background: 'rgb(255,255,255)',
     background: 'rgba(255,255,255,.8)'
   }
- 
+
 }
 export default class SignUp extends React.Component{
   //Constructor function to set initial states
@@ -40,7 +40,7 @@ export default class SignUp extends React.Component{
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidUpdate(prevProps, prevState){
-    console.log("fuck off")
+
   }
 
   handleSubmit(event){

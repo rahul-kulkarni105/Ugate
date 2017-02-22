@@ -9,7 +9,8 @@ var jwt = require ("jsonwebtoken");
 var User = require("./models/User.js");
 var Safe = require("./models/Safe.js");
 var secret = require('./serverChildren/keys').Secret;
-
+var stripeKey = require('./serverChildren/keys').Stripe.Test_Secret_Key;
+var stripe = require('stripe')(stripeKey);
 
 
 // Initialize Express

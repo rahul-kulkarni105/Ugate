@@ -5,6 +5,7 @@ import Main from '../components/Main'
 import Login from "../components/main_children/Login"
 import SignUp from "../components/main_children/SignUp"
 import AuthInputPhoneNumber from "../components/main_children/AuthInputPhoneNumber"
+
 import Dashboard from "../components/Dashboard"
 import AddPaymentMethod from '../components/dashboard_children/grandchildren/AddPaymentMethod'
 import Deposit from '../components/dashboard_children/grandchildren/Deposit'
@@ -13,6 +14,8 @@ import LogOut from '../components/dashboard_children/grandchildren/LogOut'
 import SendToRipple from '../components/dashboard_children/grandchildren/SendToRipple'
 import Upload from '../components/dashboard_children/grandchildren/Upload'
 import Withdraw from '../components/dashboard_children/grandchildren/Withdraw'
+
+
 
 module.exports = (
     <Router history={browserHistory}>
@@ -27,8 +30,8 @@ module.exports = (
             <Route path="/SendToRipple" component={SendToRipple} />
             <Route path="/Upload" component={Upload} />
             <Route path="/Withdraw" component={Withdraw} />
-            
+            <Route path="/LogOut" component={LogOut} />
             <IndexRoute component={History}/>
         </Route>
-    </Router>
+      </Router>
 );

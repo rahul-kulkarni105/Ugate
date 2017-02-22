@@ -14,7 +14,7 @@ export default class History extends React.Component{
     	<div className="panel panel-default">
     		<div className="panel-heading"> History</div>
     		<div className="panel-body">
-    			<table className="table table-hover table-responsive">
+    			<table className="table table-striped table-hover table-responsive">
                     <thead>
                         <tr>
                             <th>Date</th>

@@ -1,18 +1,13 @@
 import React from 'react'
 
 export default class LogOut extends React.Component {
-    //handleClick() {
-        // api to set user signed in to false
-
-    //}
-    render() {
-        return (
-            <div className="row">
-                <button type="button" class="btn btn-danger" /*onClick={this.handleClick}*/>
-                    <Link to="/">Logout</Link>
-                </button>
-            </div>
-
-        );
-    }
+  componentWillMount(){
+    document.cookie = 'auth_log' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.props.router.push('/')
+  }
+  render(){
+    return(
+    <div></div>
+  );
+  }
 }

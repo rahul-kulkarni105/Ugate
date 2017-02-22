@@ -21,7 +21,7 @@ export default class SideNav extends React.Component {
                 <li><Link to="/SendToRipple">SendToRipple</Link></li>
                 <li><Link to="/Upload">Upload</Link></li>
                 <li><Link to="/Withdraw">Withdraw</Link></li>
-                <li><Link to="/">LogOut</Link></li>
+                <li><Link to="/LogOut">LogOut</Link></li>
               </ul>
             </div>
 
