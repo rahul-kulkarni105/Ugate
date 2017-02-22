@@ -31,7 +31,7 @@ module.exports = (
             <Route path="/Withdraw" component={Withdraw} />
             <Route path="/RippleCharts" component={RippleCharts} />
             <Route path="/LogOut" component={LogOut} />
-            <IndexRoute component={History}/>
+            <IndexRoute component={RippleCharts}/>
         </Route>
       </Router>
 );
