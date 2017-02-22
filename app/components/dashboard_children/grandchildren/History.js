@@ -7,16 +7,18 @@ export default class History extends React.Component{
   constructor(props){
     super(props);
 
-    loadData().then(function(data){
-        this.setState({history: data})
-    }.bind(this));
-
     this.state={
-
       dateTimestamp: Date.now()
     };
   }
+  componentDidMount(){
+    loadData().then(function(data){
+        this.setState({history: data})
+    }.bind(this));
+  }
 render(){
+
+
     const histDate = moment(this.state.dateTimestamp).toString();
     return(
     	<div className="panel panel-default">
@@ -50,6 +52,8 @@ render(){
     	</div>
     );
   }
+
+
 
 
 }
