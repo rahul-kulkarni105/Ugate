@@ -1,14 +1,22 @@
 //import react module
 import React from 'react'
 import moment from 'moment'
+import {loadData} from './../../utils/helpers'
+
 export default class History extends React.Component{
   constructor(props){
     super(props);
+
+    loadData().then(function(data){
+        this.setState({history: data})
+    }.bind(this));
+
     this.state={
-        dateTimestamp: Date.now()
+      history: {},
+      dateTimestamp: Date.now()
     };
   }
-  render(){
+render(){
     const histDate = moment(this.state.dateTimestamp).toString();
     return(
     	<div className="panel panel-default">
@@ -17,7 +25,7 @@ export default class History extends React.Component{
     			<table className="table table-striped table-hover table-responsive">
                     <thead>
                         <tr>
-                            <th>Date</th>
+                            <th></th>
                             <th>Activity</th>
                             <th>Amount Processed ($)</th>
                             <th>Balance ($)</th>

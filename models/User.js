@@ -49,27 +49,26 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    history: {
-        currentBalance: [Number],
-        deposits: {
-          amount: [Number],
-          date: [Date]
+    currentBalance: Number,
+    history: [{
+
+        deposit: Number,
+        date: Date
         },
-        withdraws: {
-          amount: [Number],
-          date: [Date]
+        {
+        withdraw: Number,
+          date: Date
         },
-        sentToRipple: {
-          amount: [Number],
-          date: [Date]
+        {
+        sentToRipple: Number,
+          date: Date
         },
-        depositsFromRipple: {
-          amount: [Number],
-          date: [Date]
-        },
-        //date maybe a string and use momentjs?
-        lastModified: [Date]
-    },
+        {
+        depositsFromRipple: Number,
+        date: [Date]
+        }
+
+    ],
     // usid: {
     //     front: {
     //         data: Buffer,
