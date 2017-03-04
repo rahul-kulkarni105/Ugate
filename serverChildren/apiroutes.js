@@ -1,7 +1,7 @@
 var path = require("path");
 var bodyParser = require("body-parser");
 var User = require("./../models/User");
-var mongoose = require('mongoose');
+
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var Cookies = require('cookies');
@@ -66,8 +66,7 @@ function makeRandomString() {
 // generating the model, pass the User model defined earlier
 // nev.generateTempUserModel(User);
 
-module.exports = function(apiRoutes, app) {
-
+module.exports = function(apiRoutes, app, mongoose, stripe) {
 
     //create user and trigger email verification
     apiRoutes.post("/users/new", function(req, res) {
@@ -211,7 +210,6 @@ module.exports = function(apiRoutes, app) {
             email: req.body.email
         }, function(err, user) {
 
-
             if (err)
                 throw err;
 
@@ -228,13 +226,14 @@ module.exports = function(apiRoutes, app) {
 
                         // if user is found and password is right
                         // create a token
-                        var token = jwt.sign(user, app.get('superSecret'), {expiresIn: 60 *30});
+                        var token = jwt.sign(user, app.get('superSecret'), {
+                            expiresIn: 60 * 60 * 24
+                        });
 
                         //cookie wiht cookies lib
                         var cookie = new Cookies(req, res);
 
                         cookie.set("auth_log", token, {httpOnly: false});
-                        console.log(cookie);
 
                         res.writeHead(302, {"Location": "/"})
 
@@ -246,7 +245,6 @@ module.exports = function(apiRoutes, app) {
 
         });
     });
-
 
     // route middleware to verify a token
     apiRoutes.use(function(req, res, next) {
@@ -278,48 +276,48 @@ module.exports = function(apiRoutes, app) {
     });
 
     //logged in route
-    apiRoutes.get("/loggedIn", function(req, res, next){
+    apiRoutes.get("/loggedIn", function(req, res) {
         res.json({loggedIn: true});
+
+        console.log(req.decoded._doc.email)
         console.log(req.decoded._doc._id)
+    });
+    //post card
+    //capture from user input
+    apiRoutes.put("/customer", function(req, res) {
+        var token = req.body.stripeToken;
+        var email = req.decoded._doc.email;
 
+        stripe.customers.create({email: email, source: token.id}, function(err, customer) {
+            if (err)
+                throw err;
 
-      });
+            User.findOneAndUpdate({
+                _id: req.decoded._doc._id
+            }, {
+                $set: {
+                    customerId: customer.id
+                }
+            }, {
+                new: true,
+                upsert: true
+            }, function(err, doc) {
+                console.log(doc);
+            })
+        });
 
+    });
 
-      //get specific user
-      apiRoutes.get("/history", function(req, res, next) {
-          User.findById(req.decoded._doc._id, function(err, doc) {
-              if (err)
-                  throw err;
-              res.json(doc.history);
-          });
-      });
-
-
+    //get specific user
+    apiRoutes.get("/history", function(req, res) {
+        User.findById(req.decoded._doc._id, function(err, doc) {
+            if (err)
+                throw err;
+            res.json(doc.history);
+        });
+    });
 
     //pull info for dashboard
-    apiRoutes.get("/dashboard", function(req, res) {
-
-    });
-
-
-
-    apiRoutes.post("/charge", function(request, response) {
-        // Get the payment token submitted by the form:
-        console.log(response);
-
-        var token = request.body.stripeToken; // Using Express
-
-        // // Charge the user's card:
-        // var charge = stripe.charges.create({
-        //     amount: 1000,
-        //     currency: "usd",
-        //     description: "Example charge",
-        //     source: token
-        // }, function(err, charge) {
-        //     // asynchronously called
-        // });
-
-    });
+    apiRoutes.get("/dashboard", function(req, res) {});
 
 }

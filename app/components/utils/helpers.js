@@ -4,6 +4,7 @@ import {Router} from 'react-router'
 export function getHistory() {
     return axios.get("/history");
 }
+
 //creates user in MonogoDB
 export function createUser(userInfo) {
     return axios.post("/api/users/new", {
@@ -25,6 +26,7 @@ export function createUser(userInfo) {
         alert("Welcome to UGate. We sent you an email to verify your account.");
     }).catch(function(error) {
         console.log(error);
+        alert("One of the fields is not filled in correctly");
     });
 }
 
@@ -69,4 +71,14 @@ export function loadData(){
 
   });
 
+  }
+
+  export function stripeCardSubmit(token, form){
+    return axios.put('/api/customer',{
+      stripeToken: token
+    }).then(function(response){
+
+    }).catch(function(error){
+      console.log(error);
+    });
   }

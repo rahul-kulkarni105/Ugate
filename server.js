@@ -5,7 +5,6 @@ var Grid = require('gridfs-stream');
 //var multer = require('multer');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var jwt = require ("jsonwebtoken");
 var User = require("./models/User.js");
 var Safe = require("./models/Safe.js");
 var secret = require('./serverChildren/keys').Secret;
@@ -41,7 +40,7 @@ var db = mongoose.connection;
 Grid.mongo = mongoose.mongo;
 
 //require routes
-require("./serverChildren/apiroutes.js")(apiRoutes, app);
+require("./serverChildren/apiroutes.js")(apiRoutes, app, mongoose, stripe);
 
 // Show any mongoose errors
 db.on("error", function(error) {
