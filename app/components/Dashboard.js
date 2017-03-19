@@ -12,10 +12,11 @@ export default class Dashboard extends React.Component {
 
 
 
+
   });
   }
     render() {
-      console.log(this);
+        console.log(this.props.children)
         return (
             <div id="wrapper">
 
@@ -24,6 +25,7 @@ export default class Dashboard extends React.Component {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-12">
+
                                 {this.props.children}
                                 <a href="#menu-toggle" className="btn btn-default" id="menu-toggle">Toggle Menu</a>
                             </div>

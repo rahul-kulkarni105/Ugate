@@ -3,19 +3,36 @@ import React from 'react'
 import moment from 'moment'
 import {loadData} from './../../utils/helpers'
 
+
 export default class History extends React.Component{
   constructor(props){
     super(props);
 
     this.state={
+      history: {},
       dateTimestamp: Date.now()
     };
   }
-  componentDidMount(){
+  componentWillMount(){
     loadData().then(function(data){
         this.setState({history: data})
+        for(var i in this.state.history){
+          console.log(this.state.history[i]);
+          for(var j in this.state.history[i]){
+            console.log(j + " " + this.state.history[i][j]);
+          }
+        }
     }.bind(this));
+
   }
+
+
+
+  componentDidMount(){
+
+
+  }
+
 render(){
 
 
