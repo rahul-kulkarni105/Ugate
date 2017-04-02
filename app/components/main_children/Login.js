@@ -88,11 +88,11 @@ export default class Login extends React.Component{
               <input type="password" onChange={this.handlePassChange} value={this.state.password} required placeholder="Password" />
             </div>
             {' '}
-            {/* <Link to="/Dashboard"> */}
+            <Link to="/Dashboard">
           <button className="btn btn-default" type="submit">
               Log in
             </button>
-          {/* </Link> */}
+          </Link>
 
             {' '}
             <a>Forgot Password?</a>
