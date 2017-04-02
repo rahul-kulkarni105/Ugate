@@ -33,7 +33,7 @@ app.use('/api', apiRoutes);
 
 
 // Database configuration with mongoose -- local for now
-mongoose.connect("mongodb://localhost/ugate");
+mongoose.connect("mongodb://mongodb://heroku_r4rnrdnf:k96n49906ogn10ffk7jd6cnae3@ds161175.mlab.com:61175/heroku_r4rnrdnf");
 var db = mongoose.connection;
 
 //Gridfs-stream to save file uploads
