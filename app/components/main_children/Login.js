@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Link} from 'react-router';
-import {login, checkLogIn} from './../utils/helpers';
+import {login, checkLogIn, loadData} from './../utils/helpers';
 
 //Login component
 const styles = {
@@ -34,7 +34,7 @@ export default class Login extends React.Component{
     this.handlePassChange = this.handlePassChange.bind(this);
 
   }
-  componentDidMount(){
+  componentWillMount(){
     checkLogIn().then(function(logged){
       if(logged === true){
         this.props.router.push('/Dashboard')
@@ -45,7 +45,11 @@ export default class Login extends React.Component{
     login({email: this.state.email, password: this.state.password}).then(function(response){
       checkLogIn().then(function(logged){
         if(logged === true){
-          this.props.router.push('/Dashboard')
+          loadData().then(function(data){
+
+                  this.props.router.push({pathname: '/Dashboard', state:{history: data} })
+
+          }.bind(this));
         }
       }.bind(this));
     }.bind(this));

@@ -9,22 +9,15 @@ export default class History extends React.Component{
     super(props);
 
     this.state={
-      history: {},
+
       dateTimestamp: Date.now()
     };
   }
   componentWillMount(){
-    loadData().then(function(data){
-        this.setState({history: data})
-        for(var i in this.state.history){
-          console.log(this.state.history[i]);
-          for(var j in this.state.history[i]){
-            console.log(j + " " + this.state.history[i][j]);
-          }
-        }
-    }.bind(this));
+  console.log(this.props);
+    }
 
-  }
+
 
 
 

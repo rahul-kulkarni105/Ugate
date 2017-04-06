@@ -1,4 +1,5 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import {render} from 'react-dom'
 import {browserHistory, Router, Route, Link, IndexRoute} from 'react-router'
 import Main from '../components/Main'
@@ -18,12 +19,13 @@ import RippleCharts from '../components/dashboard_children/grandchildren/RippleC
 
 
 module.exports = (
+  <Provider store={store}>
     <Router history={browserHistory}>
         <Route path="/" component={Main}>
             <Route path="/SignUp" component={SignUp} />
             <IndexRoute component={Login}/>
         </Route>
-        <Route path="/Dashboard" component={Dashboard}>
+        <Route path="/Dashboard" component={Dashboard} >
             <Route path="/AddPaymentMethod" component={AddPaymentMethod} />
             <Route path="/Deposit" component={Deposit} />
             <Route path="/History" component={History} />
@@ -34,4 +36,5 @@ module.exports = (
             <IndexRoute component={RippleCharts}/>
         </Route>
       </Router>
+      </Provider>
 );

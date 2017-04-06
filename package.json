@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "June Lara, Steve Chronister, Ryan Ngoh, Michael Edwards",
+  "author": "June Lara, Steve Chronister, Ryan Ngoh",
   "license": "ISC",
   "dependencies": {
     "authy": "^1.2.0",
@@ -29,7 +29,9 @@
     "plaid": "^1.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
+    "redux": "^3.6.0",
     "ripple-lib": "^0.17.4",
     "stripe": "^4.14.0"
   },
@@ -42,6 +44,7 @@
     "babel-preset-es2016": "^6.22.0",
     "babel-preset-react": "^6.3.13",
     "npm": "^4.1.2",
+    "redux-devtools": "^3.3.2",
     "webpack": "^1.13.1"
   }
 }
